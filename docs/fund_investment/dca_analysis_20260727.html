@@ -1,0 +1,1254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026年7月27日收盘持仓、市场估值、AI产业与长期调整分析">
+  <link rel="icon" href="data:,">
+  <title>2026-07-27 收盘投资决策</title>
+  <style>
+    :root {
+      --ink: #18212b;
+      --ink-soft: #44515f;
+      --muted: #697586;
+      --line: #d7dee7;
+      --line-strong: #aeb9c7;
+      --paper: #ffffff;
+      --canvas: #eef2f5;
+      --panel: #f7f9fb;
+      --loss: #b42318;
+      --loss-soft: #fbe9e7;
+      --warn: #b54708;
+      --warn-soft: #fff1df;
+      --hold: #175cd3;
+      --hold-soft: #eaf2ff;
+      --safe: #027a48;
+      --safe-soft: #e8f7ef;
+      --teal: #126e68;
+      --violet: #6941c6;
+      --shadow: 0 1px 2px rgba(24, 33, 43, 0.08);
+      --sans: "SF Pro Text", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      --display: "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.72;
+      letter-spacing: 0;
+    }
+
+    a { color: var(--hold); text-underline-offset: 3px; }
+    a:hover { color: #0b4bb3; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid rgba(23, 92, 211, 0.35); outline-offset: 3px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+      width: min(1500px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--paper);
+      box-shadow: 0 0 0 1px rgba(174, 185, 199, 0.45);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 26px 20px 20px;
+      overflow-y: auto;
+      background: #202a35;
+      color: #e7edf4;
+      border-right: 1px solid #354250;
+    }
+
+    .brand {
+      padding: 0 8px 22px;
+      border-bottom: 1px solid #465363;
+    }
+    .brand-mark {
+      display: inline-block;
+      width: 30px;
+      height: 5px;
+      margin-bottom: 14px;
+      background: #63c7bd;
+    }
+    .brand strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+    .brand span { color: #aebbc9; font-size: 12px; }
+
+    .nav-label {
+      margin: 23px 8px 8px;
+      color: #8998a9;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .nav-list { margin: 0; padding: 0; list-style: none; }
+    .nav-list a {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 7px;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 8px;
+      color: #bac6d2;
+      border-left: 2px solid transparent;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .nav-list a span:first-child { color: #6f8092; font-family: var(--mono); font-size: 10px; }
+    .nav-list a:hover { color: #fff; background: #293541; }
+    .nav-list a.active { color: #fff; background: #2b3946; border-left-color: #63c7bd; }
+
+    .side-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid #465363;
+    }
+    .side-actions button {
+      min-height: 36px;
+      padding: 7px 9px;
+      color: #e7edf4;
+      background: transparent;
+      border: 1px solid #607083;
+      border-radius: 4px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .side-actions button:hover { border-color: #91a2b4; background: #2b3946; }
+
+    main { min-width: 0; }
+    .hero {
+      padding: 48px clamp(28px, 5vw, 72px) 42px;
+      color: #f8fafc;
+      background: #17212b;
+      border-bottom: 6px solid #63c7bd;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-bottom: 20px;
+      color: #aebbc9;
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .hero h1 {
+      max-width: 840px;
+      margin: 0;
+      font-family: var(--display);
+      font-size: 42px;
+      line-height: 1.15;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+    .hero-subtitle {
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: #c4cfda;
+      font-size: 17px;
+    }
+    .hero-thesis {
+      display: grid;
+      grid-template-columns: 10px minmax(0, 1fr);
+      gap: 16px;
+      max-width: 860px;
+      margin-top: 30px;
+      padding: 18px 20px;
+      color: #fff;
+      background: #222f3b;
+      border: 1px solid #40505f;
+      border-radius: 6px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .hero-thesis::before { content: ""; display: block; background: #ffca63; border-radius: 2px; }
+
+    .content { max-width: 1120px; margin: 0 auto; padding: 0 clamp(22px, 4vw, 56px) 70px; }
+    .section {
+      padding: 50px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 20px;
+    }
+    .section:last-child { border-bottom: 0; }
+    .section-kicker { margin: 0 0 5px; color: var(--teal); font-size: 12px; font-weight: 800; }
+    .section h2 {
+      margin: 0 0 22px;
+      font-family: var(--display);
+      font-size: 27px;
+      line-height: 1.3;
+      font-weight: 760;
+    }
+    .section h3 { margin: 34px 0 12px; font-size: 18px; line-height: 1.4; }
+    .section h3:first-child { margin-top: 0; }
+    .lede { max-width: 850px; color: var(--ink-soft); font-size: 16px; }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    .mono { font-family: var(--mono); }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 28px;
+    }
+    .kpi {
+      min-height: 122px;
+      padding: 17px 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--line-strong);
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+    }
+    .kpi.loss { border-top-color: var(--loss); }
+    .kpi.warn { border-top-color: var(--warn); }
+    .kpi.steady { border-top-color: var(--teal); }
+    .kpi-label { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .kpi-value {
+      display: block;
+      margin-top: 7px;
+      font-family: var(--mono);
+      font-size: 26px;
+      line-height: 1.2;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+    .kpi-value.negative { color: var(--loss); }
+    .kpi-note { display: block; margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+
+    .loss-attribution {
+      padding: 22px;
+      background: #222d38;
+      color: #f5f7fa;
+      border-radius: 6px;
+    }
+    .loss-attribution h3 { margin: 0 0 4px; font-size: 16px; }
+    .loss-attribution p { margin: 0 0 16px; color: #b9c5d1; font-size: 12px; }
+    .loss-strip { display: flex; height: 22px; overflow: hidden; background: #3a4754; border-radius: 3px; }
+    .loss-strip span { display: block; min-width: 2px; }
+    .seg-medical { width: 73.2%; background: #e0554a; }
+    .seg-energy { width: 12.4%; background: #f79009; }
+    .seg-tech { width: 5.9%; background: #8c78df; }
+    .seg-consumer { width: 5.1%; background: #3aa5a0; }
+    .seg-fixed { width: 2.7%; background: #84a7d8; }
+    .seg-qdii { width: 0.7%; background: #d0d5dd; }
+    .legend { display: flex; flex-wrap: wrap; gap: 9px 18px; margin-top: 14px; }
+    .legend-item { display: flex; gap: 7px; align-items: center; color: #d9e0e7; font-size: 12px; }
+    .legend-swatch { width: 8px; height: 8px; border-radius: 2px; }
+
+    .decision-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .decision-row {
+      display: grid;
+      grid-template-columns: minmax(170px, 0.75fr) minmax(250px, 1.55fr) 180px;
+      gap: 20px;
+      align-items: center;
+      padding: 17px 4px;
+      border-bottom: 1px solid var(--line);
+    }
+    .decision-name { font-weight: 760; }
+    .decision-reason { color: var(--ink-soft); font-size: 13px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 29px;
+      padding: 4px 9px;
+      border: 1px solid currentColor;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+    }
+    .tag.hold { color: var(--hold); background: var(--hold-soft); }
+    .tag.stop { color: var(--loss); background: var(--loss-soft); }
+    .tag.watch { color: var(--warn); background: var(--warn-soft); }
+    .tag.keep { color: var(--safe); background: var(--safe-soft); }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      align-items: start;
+    }
+    .analysis-block {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--paper);
+    }
+    .analysis-block h3 { margin: 0 0 12px; font-size: 17px; }
+    .analysis-block p:last-child { margin-bottom: 0; }
+    .analysis-block.emphasis { border-left: 5px solid var(--teal); }
+    .analysis-block.warning { border-left: 5px solid var(--warn); }
+    .analysis-block.danger { border-left: 5px solid var(--loss); }
+
+    .table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--ink-soft); background: #f1f4f7; font-size: 11px; font-weight: 800; white-space: nowrap; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td { background: #f9fbfc; }
+    td.number, th.number { text-align: right; font-family: var(--mono); white-space: nowrap; }
+    .negative { color: var(--loss); font-weight: 700; }
+    .positive { color: var(--safe); font-weight: 700; }
+
+    .market-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .market-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      min-height: 82px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+    }
+    .market-row strong { font-size: 14px; }
+    .market-row small { grid-column: 1 / -1; color: var(--muted); font-size: 11px; }
+    .market-change { font-family: var(--mono); font-size: 17px; font-weight: 780; }
+
+    .bar-list { display: grid; gap: 12px; }
+    .bar-row { display: grid; grid-template-columns: 150px 1fr 68px; gap: 12px; align-items: center; }
+    .bar-label { font-size: 13px; font-weight: 700; }
+    .bar-track { height: 12px; overflow: hidden; background: #e8edf2; border-radius: 2px; }
+    .bar-fill { display: block; height: 100%; min-width: 3px; background: var(--loss); }
+    .bar-fill.up { background: var(--safe); }
+    .bar-value { text-align: right; font-family: var(--mono); font-size: 12px; font-weight: 700; }
+
+    .formula {
+      margin: 20px 0;
+      padding: 20px 22px;
+      color: #f6f8fa;
+      background: #263340;
+      border-left: 6px solid #ffca63;
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+
+    .gate-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin: 22px 0; }
+    .gate {
+      position: relative;
+      padding: 12px 8px;
+      text-align: center;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 780;
+    }
+    .gate:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      right: -7px;
+      width: 8px;
+      height: 2px;
+      background: var(--line-strong);
+    }
+    .gate.failed { color: var(--loss); border-color: #e7a29c; background: var(--loss-soft); }
+    .gate.final { color: var(--hold); border-color: #9ebcea; background: var(--hold-soft); }
+
+    .checklist { margin: 0; padding: 0; list-style: none; counter-reset: task; }
+    .checklist li {
+      position: relative;
+      display: block;
+      min-height: 50px;
+      padding: 14px 0 14px 47px;
+      border-bottom: 1px solid var(--line);
+      counter-increment: task;
+    }
+    .checklist li::before {
+      content: counter(task, decimal-leading-zero);
+      position: absolute;
+      top: 16px;
+      left: 0;
+      width: 34px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    details { border-top: 1px solid var(--line); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary {
+      padding: 17px 4px;
+      cursor: pointer;
+      font-weight: 760;
+      list-style-position: outside;
+    }
+    details > div { padding: 0 4px 18px 24px; color: var(--ink-soft); }
+    details p:last-child { margin-bottom: 0; }
+
+    .note {
+      margin: 22px 0 0;
+      padding: 16px 18px;
+      color: var(--ink-soft);
+      background: #eef7f6;
+      border-left: 4px solid var(--teal);
+      border-radius: 4px;
+    }
+    .risk-note {
+      padding: 16px 18px;
+      color: #713b12;
+      background: var(--warn-soft);
+      border: 1px solid #f0c891;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    .source-list { columns: 2; column-gap: 34px; margin: 0; padding-left: 20px; }
+    .source-list li { break-inside: avoid; margin: 0 0 9px; font-size: 12px; }
+    footer { padding: 30px clamp(22px, 4vw, 56px); color: var(--muted); background: #f1f4f7; font-size: 12px; }
+
+    @media (max-width: 1100px) {
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .market-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .decision-row { grid-template-columns: minmax(150px, 0.8fr) minmax(240px, 1.4fr) 160px; }
+    }
+
+    @media (max-width: 860px) {
+      .layout { display: block; }
+      .sidebar {
+        position: sticky;
+        z-index: 20;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding: 10px 14px;
+        overflow: visible;
+        border-right: 0;
+        border-bottom: 1px solid #465363;
+      }
+      .brand, .nav-label, .side-actions { display: none; }
+      .nav-list { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: thin; }
+      .nav-list a { display: block; min-width: max-content; min-height: 34px; padding: 7px 10px; border-left: 0; border-bottom: 2px solid transparent; }
+      .nav-list a span:first-child { display: none; }
+      .nav-list a.active { border-left-color: transparent; border-bottom-color: #63c7bd; }
+      .hero { padding-top: 38px; }
+      .hero h1 { font-size: 34px; }
+      .split { grid-template-columns: 1fr; }
+      .decision-row { grid-template-columns: 1fr auto; gap: 7px 14px; }
+      .decision-reason { grid-column: 1 / -1; }
+      .gate-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .gate:nth-child(3)::after { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 14px; }
+      .hero { padding: 32px 20px 28px; }
+      .hero h1 { font-size: 29px; }
+      .hero-subtitle { font-size: 15px; }
+      .hero-thesis { font-size: 15px; }
+      .content { padding: 0 18px 50px; }
+      .section { padding: 38px 0; }
+      .section h2 { font-size: 23px; }
+      .kpi-grid, .market-grid { grid-template-columns: 1fr; }
+      .kpi { min-height: 105px; }
+      .bar-row { grid-template-columns: 112px 1fr 58px; gap: 8px; }
+      .gate-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gate:nth-child(3)::after { display: block; }
+      .gate:nth-child(even)::after { display: none; }
+      .source-list { columns: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background: #fff; color: #000; font-size: 10pt; }
+      .layout { display: block; width: 100%; box-shadow: none; }
+      .sidebar { display: none; }
+      .hero { padding: 20px 0; color: #000; background: #fff; border-bottom: 2px solid #000; }
+      .hero-meta, .hero-subtitle { color: #333; }
+      .hero h1 { font-size: 24pt; }
+      .hero-thesis { color: #000; background: #fff; border: 1px solid #777; }
+      .content { max-width: none; padding: 0; }
+      .section { padding: 20px 0; break-inside: auto; }
+      .kpi, .analysis-block, .market-row, .loss-attribution, .table-wrap, .risk-note { box-shadow: none; break-inside: avoid; }
+      .loss-attribution { color: #000; background: #fff; border: 1px solid #777; }
+      .loss-attribution p, .legend-item { color: #333; }
+      .table-wrap { overflow: visible; }
+      table { font-size: 8pt; }
+      th, td { padding: 5px 6px; }
+      a { color: #000; text-decoration: none; }
+      details > div { display: block !important; }
+      summary { list-style: none; }
+      .source-list { columns: 2; }
+      footer { padding: 20px 0; background: #fff; border-top: 1px solid #777; }
+    }
+
+    .kpi.gain { border-top-color: var(--safe); }
+    .context-band {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px;
+      align-items: center;
+      padding: 18px clamp(22px, 4vw, 56px);
+      color: var(--ink-soft);
+      background: #f4f7f9;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+    }
+    .context-band strong { color: var(--ink); }
+    .context-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+    .context-badges span { padding: 3px 7px; border: 1px solid var(--line-strong); border-radius: 3px; background: #fff; white-space: nowrap; }
+    .markdown > p { max-width: 900px; }
+    .markdown h3 { scroll-margin-top: 70px; }
+    .markdown ul, .markdown ol { padding-left: 23px; }
+    .markdown li { margin: 6px 0; }
+    .markdown blockquote {
+      margin: 20px 0;
+      padding: 14px 18px;
+      color: #713b12;
+      background: var(--warn-soft);
+      border: 1px solid #f0c891;
+      border-left: 4px solid var(--warn);
+      border-radius: 5px;
+      font-size: 12px;
+    }
+    .markdown blockquote p { margin: 0; }
+    :not(pre) > code {
+      padding: 2px 5px;
+      color: #24445f;
+      background: #edf2f6;
+      border: 1px solid #dce4eb;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 0.9em;
+      white-space: nowrap;
+    }
+    pre.formula code { padding: 0; color: inherit; background: transparent; border: 0; font: inherit; white-space: inherit; }
+    .table-wrap { margin: 18px 0 26px; }
+    .table-wrap:focus-visible { outline: 3px solid rgba(23, 92, 211, 0.35); outline-offset: 3px; }
+    .markdown th:not(:first-child), .markdown td:not(:first-child) { min-width: 88px; }
+    .markdown td:first-child { font-weight: 650; }
+    .allocation-panel { margin: 0 0 28px; padding: 20px 22px; color: #f4f7fa; background: #222d38; border-radius: 6px; }
+    .allocation-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; }
+    .allocation-head strong { display: block; font-size: 16px; }
+    .allocation-head span { color: #b9c5d1; font-size: 11px; }
+    .allocation-note { white-space: nowrap; }
+    .allocation-strip { display: flex; height: 24px; margin: 17px 0 13px; overflow: hidden; border-radius: 3px; background: #3a4754; }
+    .allocation-strip span { display: block; min-width: 2px; }
+    .allocation-legend { display: flex; flex-wrap: wrap; gap: 8px 17px; color: #d9e0e7; font-size: 11px; }
+    .allocation-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .allocation-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+    .source-list { columns: 1; }
+    .source-list li { overflow-wrap: anywhere; }
+    .side-actions a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 7px 9px;
+      color: #e7edf4;
+      border: 1px solid #607083;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .side-actions a:hover { color: #fff; border-color: #91a2b4; background: #2b3946; }
+    @media (max-width: 860px) {
+      .context-band { grid-template-columns: 1fr; }
+      .context-badges { justify-content: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .context-band { padding: 15px 18px; }
+      .context-badges span { font-size: 10px; }
+      .allocation-head { align-items: start; flex-direction: column; gap: 4px; }
+      :not(pre) > code { white-space: normal; overflow-wrap: anywhere; }
+    }
+
+    .section h4 {
+      margin: 24px 0 8px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 760;
+    }
+    #sellplan > .table-wrap:nth-of-type(3) table {
+      min-width: 980px;
+    }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="报告导航">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><strong>收盘投资决策</strong><span>2026 · 07 · 27</span></div>
+      <p class="nav-label">报告目录</p>
+      <nav><ul class="nav-list"><li><a href="#summary"><span>01</span><span>今日结论</span></a></li>
+<li><a href="#market"><span>02</span><span>市场结构</span></a></li>
+<li><a href="#portfolio"><span>03</span><span>持仓分析</span></a></li>
+<li><a href="#structure"><span>04</span><span>长期结构</span></a></li>
+<li><a href="#valuation"><span>05</span><span>估值判断</span></a></li>
+<li><a href="#holdings"><span>06</span><span>回本审查</span></a></li>
+<li><a href="#dividend"><span>07</span><span>红利低波</span></a></li>
+<li><a href="#ai"><span>08</span><span>AI产业</span></a></li>
+<li><a href="#assets"><span>09</span><span>其他资产</span></a></li>
+<li><a href="#dca"><span>10</span><span>4%定投法</span></a></li>
+<li><a href="#gaps"><span>11</span><span>主要遗漏</span></a></li>
+<li><a href="#next"><span>12</span><span>执行清单</span></a></li>
+<li><a href="#audit"><span>13</span><span>对抗审查</span></a></li>
+<li><a href="#sources"><span>14</span><span>来源口径</span></a></li></ul></nav>
+      <div class="side-actions"><button id="print-report" type="button">打印</button><a href="./dca_analysis_20260727.md" title="打开Markdown源文档">源文档</a></div>
+    </aside>
+    <main>
+      <header class="hero" id="top">
+        <div class="hero-meta"><span>分析日期 2026-07-27</span><span>A股收盘复盘</span><span>正式净值待确认</span><span>回本策略审查</span></div>
+        <h1>反弹不改变调整顺序</h1>
+        <p class="hero-subtitle">从现金流、估值、仓位和机会成本出发，把当天上涨转换为可执行的长期动作。</p>
+        <div class="hero-thesis">成长板块V形修复，工业电子利润改善；账户主要受益于医疗反弹，但防守与医疗合计仍接近80%。等待部分仓位修复合理，等待全部回本才卖不合理。</div>
+      </header>
+      <div class="context-band">
+        <div><strong>口径：</strong>A股和ETF使用15:02附近收盘快照；港股使用14:54快照；黄金使用15:00数据；持仓基准使用7月24日正式净值。</div>
+        <div class="context-badges"><span>收盘复盘</span><span>第一性原理</span><span>先降集中度</span></div>
+      </div>
+      <div class="content"><section class="section markdown" id="summary"><p class="section-kicker">DECISION FIRST</p><h2>三分钟行动结论</h2>
+  <div class="kpi-grid" aria-label="今日关键指标">
+    <div class="kpi steady"><span class="kpi-label">账户基准</span><strong class="kpi-value">19.00万元</strong><span class="kpi-note">使用7月24日正式净值</span></div>
+    <div class="kpi gain"><span class="kpi-label">今日估算</span><strong class="kpi-value">+0.7%~1.0%</strong><span class="kpi-note">主要由医疗反弹贡献</span></div>
+    <div class="kpi loss"><span class="kpi-label">医疗权重</span><strong class="kpi-value">22.95%</strong><span class="kpi-note">先降至18%，长期10%-12%</span></div>
+    <div class="kpi warn"><span class="kpi-label">防守权重</span><strong class="kpi-value">56.48%</strong><span class="kpi-note">核心仓建立后降至40%</span></div>
+  </div>
+  <div class="risk-note"><strong>结论：</strong>今天是超跌和盈利数据共同推动的广泛修复。反弹改善退出价格，没有修复医疗集中、主题重复和宽基缺失。</div>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表"><table>
+<thead>
+<tr>
+<th>方向</th>
+<th align="right">当前状态</th>
+<th>后续动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全账户</td>
+<td align="right">20260724正式净值基准约<code>190,039元</code></td>
+<td>今日估算约<code>+0.7%至+1.0%</code>，上涨约<code>1,300至1,900元</code>；不因一天反弹改变长期结构</td>
+</tr>
+<tr>
+<td>天弘永利债券B（<code>420102</code>）与汇添富鑫享添利六个月持有混合A（<code>012951</code>）</td>
+<td align="right">合计约<code>56.48%</code></td>
+<td>持有但停止新增；核心仓出现合格买点后逐步降至约40%</td>
+</tr>
+<tr>
+<td>中欧医疗健康混合A（<code>003095</code>）</td>
+<td align="right">20260724约<code>43,617元，占22.95%</code>；医疗指数今日<code>+2.33%</code></td>
+<td>不加仓；先降至18%，最终10%-12%，允许保留部分等待修复</td>
+</tr>
+<tr>
+<td>天弘中证光伏产业指数A（<code>011102</code>）</td>
+<td align="right">20260724约<code>8,952元，占4.71%</code>；光伏ETF今日<code>+2.34%</code></td>
+<td>不等全部回本；赎回费合适时先减约一半，长期退出</td>
+</tr>
+<tr>
+<td>南方中证新能源ETF联接A（<code>012831</code>）</td>
+<td align="right">20260724约<code>5,918元，占3.11%</code>；新能源指数今日<code>+2.69%</code></td>
+<td>不补仓；可保留部分等待修复，但分批退出</td>
+</tr>
+<tr>
+<td>汇添富消费行业混合（<code>000083</code>）</td>
+<td align="right">约<code>6.94%</code>；中证消费今日<code>+0.49%</code></td>
+<td>过渡持有，不补；未来优先由A股宽基承接消费暴露</td>
+</tr>
+<tr>
+<td>招商中证白酒指数C（<code>012414</code>）与天弘中证食品饮料ETF联接A（<code>001631</code>）</td>
+<td align="right">合计约<code>1.09%</code>，属于重复消费</td>
+<td>赎回费合适时清理，不因低估继续增加产品数量</td>
+</tr>
+<tr>
+<td>华安纳指100联接A（<code>040046</code>）</td>
+<td align="right">约<code>0.83%</code></td>
+<td>保留现有份额作为成长卫星，当前不加仓</td>
+</tr>
+<tr>
+<td>广发纳指100联接A（<code>270042</code>）</td>
+<td align="right">约<code>0.08%</code></td>
+<td>与华安纳指重复，停止新增并退出</td>
+</tr>
+<tr>
+<td>摩根标普500指数A（<code>017641</code>）</td>
+<td align="right">约<code>1.11%</code></td>
+<td>长期海外核心候选，当前不追涨</td>
+</tr>
+<tr>
+<td>信澳核心科技混合A（<code>007484</code>）</td>
+<td align="right">约<code>2.69%</code></td>
+<td>不补仓；反弹和赎回费合适时分2至3批退出</td>
+</tr>
+<tr>
+<td>红利低波</td>
+<td align="right">ETF今日<code>+0.43%</code>；近似PE约<code>7.90倍</code>、股息率约<code>4.80%</code></td>
+<td>角色需要，但相对历史仍不便宜，继续等待</td>
+</tr>
+<tr>
+<td>AI与半导体</td>
+<td align="right">AI ETF<code>+1.32%</code>，半导体ETF<code>+0.99%</code>，设备ETF<code>+3.50%</code></td>
+<td>盈利改善真实、估值仍高；现有直接AI/成长仓约3.60%，不新建主题仓</td>
+</tr>
+<tr>
+<td>黄金</td>
+<td align="right">黄金ETF<code>+1.40%</code>；Au99.99在15:00约<code>892.9元/克</code></td>
+<td>不追涨；仅在家庭缺少黄金时按保险仓建立</td>
+</tr>
+</tbody></table></div>
+<p><strong>核心结论：今天是7月24日急跌后的广泛修复，电子行业利润数据又强化了科技盈利预期，但上涨并没有同时修复你的组合结构。</strong> 最大风险仍是防守与医疗合计接近80%、主题产品重复，以及A股宽基核心缺失。</p>
+</section>
+<section class="section markdown" id="market"><p class="section-kicker">MARKET STRUCTURE</p><h2>今天的市场结构</h2>
+<h3>2.1 收盘指数</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表"><table>
+<thead>
+<tr>
+<th>指数</th>
+<th align="right">收盘点位</th>
+<th align="right">涨跌</th>
+<th align="right">日内低点</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上证指数</td>
+<td align="right">3858.25</td>
+<td align="right">+1.16%</td>
+<td align="right">3793.45</td>
+<td>从低点明显修复，收在日内高位附近</td>
+</tr>
+<tr>
+<td>沪深300</td>
+<td align="right">4702.43</td>
+<td align="right">+1.15%</td>
+<td align="right">4615.53</td>
+<td>权重资产同步反弹，但估值没有变便宜</td>
+</tr>
+<tr>
+<td>深证成指</td>
+<td align="right">14148.73</td>
+<td align="right">+2.72%</td>
+<td align="right">13689.02</td>
+<td>成长风格显著强于大盘价值</td>
+</tr>
+<tr>
+<td>创业板指</td>
+<td align="right">3590.79</td>
+<td align="right">+3.16%</td>
+<td align="right">3449.21</td>
+<td>医疗、新能源和成长共同推动</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td align="right">1807.95</td>
+<td align="right">+1.16%</td>
+<td align="right">1724.47</td>
+<td>盘中振幅大，科技拥挤风险仍在</td>
+</tr>
+</tbody></table></div>
+<p>沪深两市按指数成交额口径合计约<code>2.08万亿元</code>。午间公开统计显示近4900只个股上涨，说明今天具有较强市场广度，不只是少数权重股拉升。</p>
+<h3>2.2 代表方向</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表"><table>
+<thead>
+<tr>
+<th>代表ETF或指数</th>
+<th align="right">今日涨跌</th>
+<th>第一性原理解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>半导体设备ETF国泰（<code>159516</code>）</td>
+<td align="right">+3.50%</td>
+<td>国产存储扩产和设备订单预期强化，设备比综合指数更强</td>
+</tr>
+<tr>
+<td>通信ETF国泰（<code>515880</code>）</td>
+<td align="right">+3.25%</td>
+<td>算力网络和前期超跌共同驱动</td>
+</tr>
+<tr>
+<td>中证新能源（<code>399808</code>）</td>
+<td align="right">+2.69%</td>
+<td>风险偏好修复，但盈利数据仍未证明完整反转</td>
+</tr>
+<tr>
+<td>医疗ETF华宝（<code>512170</code>）</td>
+<td align="right">+2.54%</td>
+<td>创新药、医疗和超跌修复共同推动</td>
+</tr>
+<tr>
+<td>光伏ETF华泰柏瑞（<code>515790</code>）</td>
+<td align="right">+2.34%</td>
+<td>政策与反弹交易继续，行业自由现金流仍需验证</td>
+</tr>
+<tr>
+<td>云计算ETF易方达（<code>516510</code>）</td>
+<td align="right">+2.36%</td>
+<td>AI收入预期改善，但资本回收期仍是关键</td>
+</tr>
+<tr>
+<td>人工智能ETF易方达（<code>159819</code>）</td>
+<td align="right">+1.32%</td>
+<td>产业景气改善，不代表高估值已经消失</td>
+</tr>
+<tr>
+<td>消费ETF汇添富（<code>159928</code>）</td>
+<td align="right">+1.07%</td>
+<td>低估方向修复，需求拐点仍不清晰</td>
+</tr>
+<tr>
+<td>红利低波ETF华泰柏瑞（<code>512890</code>）</td>
+<td align="right">+0.43%</td>
+<td>风险偏好上升时相对落后，分散角色仍在</td>
+</tr>
+<tr>
+<td>黄金ETF华安（<code>518880</code>）</td>
+<td align="right">+1.40%</td>
+<td>美联储议息前预期调整，不能据单日上涨追价</td>
+</tr>
+</tbody></table></div>
+<h3>2.3 上涨的三层原因</h3>
+<ol>
+<li><strong>价格层：超跌修复。</strong> 7月24日沪指、深成指和创业板分别下跌1.61%、2.47%和2.65%，今天首先是风险偏好的反向修复。</li>
+<li><strong>盈利层：工业利润改善。</strong> 2026年上半年规模以上工业企业利润同比增长18.7%，计算机、通信和其他电子设备制造业利润增长96.9%，为科技和AI链提供盈利证据。</li>
+<li><strong>事件层：国产存储与设备催化。</strong> 长鑫科技上市强化国产DRAM、设备和材料订单预期，但单个事件不能替代整个产业链现金流验证。</li>
+</ol>
+<p>今天不是所有行业基本面同时改善。同期电气机械利润下降8.6%、汽车制造下降19.5%、非金属矿物制品下降47.8%，这与光伏、新能源的上涨形成明显背离。</p>
+</section>
+<section class="section markdown" id="portfolio"><p class="section-kicker">PORTFOLIO UPDATE</p><h2>最新持仓与今日损益区间</h2>
+<h3>3.1 20260724正式净值基准</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表"><table>
+<thead>
+<tr>
+<th>基金名称（代码）</th>
+<th align="right">估算市值</th>
+<th align="right">权重</th>
+<th>当前职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>天弘永利债券B（<code>420102</code>）</td>
+<td align="right">87,303元</td>
+<td align="right">45.94%</td>
+<td>主要防守，停止新增</td>
+</tr>
+<tr>
+<td>中欧医疗健康混合A（<code>003095</code>）</td>
+<td align="right">43,617元</td>
+<td align="right">22.95%</td>
+<td>超配医疗卫星</td>
+</tr>
+<tr>
+<td>汇添富鑫享添利六个月持有混合A（<code>012951</code>）</td>
+<td align="right">20,028元</td>
+<td align="right">10.54%</td>
+<td>辅助防守</td>
+</tr>
+<tr>
+<td>汇添富消费行业混合（<code>000083</code>）</td>
+<td align="right">13,196元</td>
+<td align="right">6.94%</td>
+<td>过渡消费仓</td>
+</tr>
+<tr>
+<td>天弘中证光伏产业指数A（<code>011102</code>）</td>
+<td align="right">8,952元</td>
+<td align="right">4.71%</td>
+<td>待退出周期主题</td>
+</tr>
+<tr>
+<td>南方中证新能源ETF联接A（<code>012831</code>）</td>
+<td align="right">5,918元</td>
+<td align="right">3.11%</td>
+<td>过渡新能源主题</td>
+</tr>
+<tr>
+<td>信澳核心科技混合A（<code>007484</code>）</td>
+<td align="right">5,120元</td>
+<td align="right">2.69%</td>
+<td>待收敛主动成长仓</td>
+</tr>
+<tr>
+<td>摩根标普500指数A（<code>017641</code>）</td>
+<td align="right">2,106元</td>
+<td align="right">1.11%</td>
+<td>海外宽基核心雏形</td>
+</tr>
+<tr>
+<td>天弘中证食品饮料ETF联接A（<code>001631</code>）</td>
+<td align="right">1,861元</td>
+<td align="right">0.98%</td>
+<td>重复消费</td>
+</tr>
+<tr>
+<td>华安纳指100联接A（<code>040046</code>）</td>
+<td align="right">1,569元</td>
+<td align="right">0.83%</td>
+<td>成长卫星</td>
+</tr>
+<tr>
+<td>招商中证白酒指数C（<code>012414</code>）</td>
+<td align="right">210元</td>
+<td align="right">0.11%</td>
+<td>重复且过窄</td>
+</tr>
+<tr>
+<td>广发纳指100联接A（<code>270042</code>）</td>
+<td align="right">159元</td>
+<td align="right">0.08%</td>
+<td>重复纳指工具</td>
+</tr>
+</tbody></table></div>
+<p>防守仓约<code>56.48%</code>，医疗约<code>22.95%</code>，两者合计<code>79.43%</code>。基金数量看似很多，但账户结果仍主要由防守产品和一个医疗基金决定。</p>
+<h3>3.2 今日损益区间</h3>
+<p>开放式基金估值接口今日未返回可靠数据，因此使用正式净值和对应指数/ETF作压力区间：</p>
+<ul>
+<li>中欧医疗健康混合A（<code>003095</code>）可能贡献约<code>+800至+1,300元</code>。</li>
+<li>天弘光伏A（<code>011102</code>）约贡献<code>+209元</code>。</li>
+<li>南方新能源A（<code>012831</code>）约贡献<code>+159元</code>。</li>
+<li>信澳核心科技A（<code>007484</code>）可能贡献约<code>+70至+170元</code>。</li>
+<li>防守产品和主动基金存在跟踪误差。</li>
+</ul>
+<p>全账户估算上涨约<code>1,300至1,900元，即+0.7%至+1.0%</code>。正式净值发布后应校正金额，但不需要修改长期动作。</p>
+</section>
+<section class="section markdown" id="structure"><p class="section-kicker">PORTFOLIO DESIGN</p><h2>第一性原理与长期组合</h2>
+<p>长期回报近似为：</p>
+<pre class="formula"><code class="language-text">长期回报
+= 底层企业盈利增长
++ 利息与可持续分红
++/- 估值变化
+- 管理费、交易费和错误集中
+</code></pre>
+<p>历史成本不在公式中。它只影响赎回费、执行纪律和心理感受，不能决定资产从今天起是否值得继续持有。</p>
+<h3>4.1 参考长期目标</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表"><table>
+<thead>
+<tr>
+<th>长期角色</th>
+<th align="right">目标</th>
+<th>当前主要问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>防守资产</td>
+<td align="right">40%</td>
+<td>当前约56.48%，但不在权益高估时一次性释放</td>
+</tr>
+<tr>
+<td>A股宽基核心</td>
+<td align="right">22%</td>
+<td>当前为0%，沪深300估值仍偏高</td>
+</tr>
+<tr>
+<td>海外宽基核心</td>
+<td align="right">12%</td>
+<td>摩根标普500A仅约1.11%</td>
+</tr>
+<tr>
+<td>医疗卫星</td>
+<td align="right">10%</td>
+<td>当前约22.95%，允许10%-12%波动</td>
+</tr>
+<tr>
+<td>红利低波</td>
+<td align="right">7%</td>
+<td>当前缺失，但估值门未通过</td>
+</tr>
+<tr>
+<td>黄金保险</td>
+<td align="right">4%</td>
+<td>家庭整体黄金未知</td>
+</tr>
+<tr>
+<td>AI与成长卫星</td>
+<td align="right">3%</td>
+<td>当前直接暴露约3.60%，已经超出目标</td>
+</tr>
+<tr>
+<td>其他行业卫星</td>
+<td align="right">2%</td>
+<td>消费、光伏和新能源合计明显超额</td>
+</tr>
+</tbody></table></div>
+<h3>4.2 调整顺序</h3>
+<ol>
+<li>停止所有计划退出产品的新增资金。</li>
+<li>清理广发纳指A（<code>270042</code>）、招商白酒C（<code>012414</code>）和天弘食品饮料A（<code>001631</code>）等重复小仓。</li>
+<li>利用反弹降低光伏、新能源和信澳科技，而不是把上涨解释为论点自动修复。</li>
+<li>医疗先降到18%，再到15%，最终10%-12%。</li>
+<li>A股宽基、海外宽基和红利低波分别通过估值门后，再释放防守仓建立核心。</li>
+</ol>
+</section>
+<section class="section markdown" id="valuation"><p class="section-kicker">VALUATION</p><h2>最新估值判断</h2>
+<p>中证指数正式估值使用20260724数据，20260727近似PE按对应指数或ETF涨跌机械调整。历史区间沿用此前报告的长期分位框架；中证官方当前下载文件仅包含近期数据，因此不重新伪造十年精确分位。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表"><table>
+<thead>
+<tr>
+<th>指数或方向</th>
+<th align="right">今日近似PE</th>
+<th>估值区间</th>
+<th>组合动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>沪深300</td>
+<td align="right">约14.89倍</td>
+<td>合理偏高</td>
+<td>A股宽基缺失，但今天不追</td>
+</tr>
+<tr>
+<td>中证医疗</td>
+<td align="right">约27.04倍</td>
+<td>合理偏低</td>
+<td>估值支持保留部分，仓位门要求减仓</td>
+</tr>
+<tr>
+<td>中证白酒</td>
+<td align="right">约19.16倍</td>
+<td>低估</td>
+<td>清理重复产品，不是否定行业</td>
+</tr>
+<tr>
+<td>中证消费</td>
+<td align="right">约18.95倍</td>
+<td>低估</td>
+<td>不补主动消费，未来由宽基承接</td>
+</tr>
+<tr>
+<td>红利低波</td>
+<td align="right">约7.90倍</td>
+<td>合理偏高</td>
+<td>股息率约4.80%，继续等待</td>
+</tr>
+<tr>
+<td>中证新能源</td>
+<td align="right">约25.58倍</td>
+<td>合理中部</td>
+<td>基本面门未通过，不补仓</td>
+</tr>
+<tr>
+<td>光伏产业</td>
+<td align="right">约26.19倍</td>
+<td>PE受周期利润扭曲</td>
+<td>产能与自由现金流未修复，退出</td>
+</tr>
+<tr>
+<td>人工智能主题</td>
+<td align="right">约60.46倍</td>
+<td>高估</td>
+<td>不新建主题仓</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td align="right">约160.23倍</td>
+<td>极高估</td>
+<td>不能因设备上涨追买综合指数</td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="section markdown" id="holdings"><p class="section-kicker">HOLDING ACTIONS</p><h2>持仓卖出与“等待回本”审查</h2>
+<h3>6.1 回本不是价值判断</h3>
+<p>正确问题不是“什么时候回到成本价”，而是：</p>
+<pre class="formula"><code class="language-text">从今天继续持有该基金的预期回报
+是否高于风险相近的替代资产
+</code></pre>
+<p>把回本设为唯一卖出条件，会产生沉没成本和机会成本问题。但在估值合理、论点仍成立时，保留部分仓位等待修复可以减少一次性择时风险。</p>
+<h3>6.2 三只基金的客观差异</h3>
+<p>按20260724正式净值和今日指数涨幅估算：</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表"><table>
+<thead>
+<tr>
+<th>基金</th>
+<th align="right">估算距成本价</th>
+<th>判断</th>
+<th>更合理动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中欧医疗健康混合A（<code>003095</code>）</td>
+<td align="right">约需再涨13%-14%</td>
+<td>医疗估值不高，但账户仓位严重超配</td>
+<td>先减至18%，剩余部分等待修复；最终10%-12%</td>
+</tr>
+<tr>
+<td>天弘中证光伏产业指数A（<code>011102</code>）</td>
+<td align="right">约需再涨46%-47%</td>
+<td>回本距离远，行业盈利和现金流未确认</td>
+<td>不等全部回本，先减一半，剩余最多观察两个季度</td>
+</tr>
+<tr>
+<td>南方中证新能源ETF联接A（<code>012831</code>）</td>
+<td align="right">约需再涨8%-9%</td>
+<td>仓位较小、修复距离较近，但基本面仍弱</td>
+<td>可保留一半等待接近成本，另一半分批退出；禁止补仓</td>
+</tr>
+</tbody></table></div>
+<p>三者合计仍占账户约31%。因此“全部持有到回本”不是中性的等待，而是主动让约三分之一账户继续承担医疗集中和新能源周期风险。</p>
+</section>
+<section class="section markdown" id="dividend"><p class="section-kicker">DIVIDEND LOW VOL</p><h2>红利低波</h2>
+<p>红利低波ETF华泰柏瑞（<code>512890</code>）收涨0.43%。中证红利低波20260724正式PE为7.87倍、股息率4.82%；按今日价格机械调整后约为PE 7.90倍、股息率4.80%。</p>
+<p>红利低波回报来自：</p>
+<pre class="formula"><code class="language-text">可持续股息率
++ 企业盈利增长
++ 估值变化
+- 分红下调和行业集中
+</code></pre>
+<p>绝对PE低不等于相对自身历史低估。当前继续观察景顺长城中证红利低波动100ETF发起联接C（<code>016129</code>）等场外产品，但不因组合缺失或今日上涨建立首仓。</p>
+</section>
+<section class="section markdown" id="ai"><p class="section-kicker">AI INDUSTRY</p><h2>AI产业与持仓动作</h2>
+<p>上半年计算机、通信和其他电子设备制造业利润同比增长96.9%，说明AI和电子需求不是纯叙事。但AI股东回报仍然是：</p>
+<pre class="formula"><code class="language-text">AI收入 × 可持续利润率
+- GPU、存储、网络、电力和折旧
+- 后续资本开支
+- 买入时支付的估值
+</code></pre>
+<p>今日半导体设备上涨3.50%、通信上涨3.25%、云计算上涨2.36%，强于人工智能主题的1.32%和半导体综合的0.99%。这说明资金更偏好订单更明确的设备与基础设施，而不是整个产业无差别上涨。</p>
+<h3>8.1 你的动作</h3>
+<ul>
+<li>华安纳指100联接A（<code>040046</code>）：保留，不加仓。</li>
+<li>摩根标普500指数A（<code>017641</code>）：作为海外核心候选，等待估值和价格门。</li>
+<li>广发纳指100联接A（<code>270042</code>）：退出。</li>
+<li>信澳核心科技混合A（<code>007484</code>）：反弹时分批退出。</li>
+<li>不购买新的AI、芯片、通信、云计算或半导体基金。</li>
+</ul>
+<p>直接AI与成长暴露约3.60%，已经高于3%目标。只有完成去重、估值回到历史中位数以下、现金流继续验证后，才重新获得买入资格；首笔最多约账户1%，即<code>1,900元</code>。</p>
+</section>
+<section class="section markdown" id="assets"><p class="section-kicker">WATCH ASSETS</p><h2>阿里巴巴、中芯国际与黄金</h2>
+<p>这三项不是当前基金持仓，不纳入账户损益。</p>
+<h3>9.1 阿里巴巴-W（<code>09988</code>）</h3>
+<p>14:54附近约<code>111.2港元，+1.09%</code>。云AI收入增长仍需转化为集团自由现金流。当前组合连A股宽基核心都未建立，不应优先增加单一个股风险。</p>
+<p><strong>动作：继续观察，不因今天上涨建仓。</strong></p>
+<h3>9.2 中芯国际（<code>00981</code>）</h3>
+<p>14:54附近约<code>70.95港元，-0.56%</code>。国产替代长期需求成立，但晶圆制造必须持续承担资本开支、折旧和周期波动。</p>
+<p><strong>动作：暂不建仓；设备订单强不等于晶圆制造股东回报立即改善。</strong></p>
+<h3>9.3 黄金</h3>
+<p>Au99.99在15:00附近约<code>892.9元/克</code>，黄金ETF华安（<code>518880</code>）上涨1.40%。美联储议息前价格容易受利率预期影响。</p>
+<p><strong>动作：不追涨。</strong> 家庭没有实物黄金或黄金基金时，长期保险仓上限约4%；已有黄金需要合并计算。</p>
+</section>
+<section class="section markdown" id="dca"><p class="section-kicker">EXECUTION METHOD</p><h2>4%定投法</h2>
+  <div class="gate-flow" aria-label="投资决策六道门">
+    <div class="gate">质量门</div><div class="gate">指标门</div>
+    <div class="gate failed">估值门</div><div class="gate failed">基本面门</div>
+    <div class="gate failed">组合门</div><div class="gate final">价格门</div>
+  </div>
+<p>4%法不是每次拿账户4%买入，而是：</p>
+<pre class="formula"><code class="language-text">标的通过质量、估值、基本面和组合门
+→ 建立首笔并记录确认净值P
+→ 下一笔只在确认净值不高于0.96P时执行
+</code></pre>
+<p>今天没有新的买入触发：</p>
+<ul>
+<li>医疗估值合理，但仓位门失败。</li>
+<li>消费估值偏低，但产品重复。</li>
+<li>光伏、新能源基本面门失败。</li>
+<li>沪深300、红利低波、AI和半导体估值门失败。</li>
+<li>黄金和海外科技不具备足够安全边际。</li>
+</ul>
+<p>卖出计划与4%法分开。卖出不需要等待净值每上涨4%，而应由组合上限、基本面和赎回费决定。</p>
+</section>
+<section class="section markdown" id="gaps"><p class="section-kicker">RISK GAPS</p><h2>当前最大的遗漏</h2>
+<ol>
+<li>持仓仍停留在20260723，没有确认今天是否已经减仓。</li>
+<li>缺少每笔份额的申购日期、持有期限和实际赎回费。</li>
+<li>今日开放式基金正式净值尚未发布，账户收益只能给区间。</li>
+<li>缺少明确的A股宽基候选、费率和估值阈值。</li>
+<li>家庭现金、房产、保险和实物黄金未知。</li>
+<li>信澳核心科技A（<code>007484</code>）的最新季度持仓与扣费后超额收益尚未验证。</li>
+</ol>
+</section>
+<section class="section markdown" id="next"><p class="section-kicker">ACTION LIST</p><h2>执行清单</h2>
+<ol class="checklist">
+<li>若今天已经提交赎回，记录基金、金额、确认净值、费用和剩余份额。</li>
+<li>若今天没有操作，不在明天开盘因为上涨而反向追买。</li>
+<li>中欧医疗健康A（<code>003095</code>）第一阶段目标18%；按当前基准约需减少<code>9,400元</code>。</li>
+<li>天弘光伏A（<code>011102</code>）先减约一半，约<code>4,500元</code>。</li>
+<li>南方新能源A（<code>012831</code>）可先减约一半，约<code>3,000元</code>，剩余部分禁止补仓。</li>
+<li>清理广发纳指A（<code>270042</code>）、招商白酒C（<code>012414</code>）和天弘食品饮料A（<code>001631</code>）。</li>
+<li>信澳核心科技A（<code>007484</code>）反弹且赎回费合适时先减约三分之一。</li>
+<li>停止追加天弘永利债券B（<code>420102</code>）和所有计划退出产品。</li>
+<li>正式净值发布后更新持仓，再决定下一批减仓金额。</li>
+<li>新核心仓通过估值门前，减仓资金保留在防守或现金角色，不追逐当天强势板块。</li>
+</ol>
+</section>
+<section class="section markdown" id="audit"><p class="section-kicker">ADVERSARIAL REVIEW</p><h2>对抗式审查</h2>
+<details><summary>质疑一：卖出后基金继续上涨怎么办</summary><div><p>分批减仓保留了部分上涨参与权。组合调整的目标不是卖在最高点，而是降低单一判断错误对总账户的伤害。</p></div></details>
+<details><summary>质疑二：医疗低估，为什么还要减</summary><div><p>估值决定预期回报，仓位决定判断错误时的损失。医疗接近23%的仓位使一个行业决定大部分权益波动，低估不能取消仓位上限。</p></div></details>
+<details><summary>质疑三：光伏亏损最多，现在卖不是割肉吗</summary><div><p>实现亏损只是会计状态变化。真正成本是继续持有未来回报较弱的资产，并错过更高质量的核心资产。光伏需要约47%上涨才能回本，等待期限不可控。</p></div></details>
+<details><summary>质疑四：新能源只差约9%，为什么不全部等回本</summary><div><p>可以保留部分等待，但必须设置仓位、时间和基本面边界。合理的是等待部分仓位修复，不是继续补仓或无限期延长持有。</p></div></details>
+<details><summary>质疑五：工业电子利润增长96.9%，为什么不买AI</summary><div><p>盈利增长提高内在价值，高估值降低预期回报。你的直接AI与成长仓已经超过目标，继续买入会同时违反估值门和组合门。</p></div></details>
+<details><summary>质疑六：防守仓超过56%，为什么不马上卖</summary><div><p>因为A股宽基、海外宽基和红利低波尚未全部出现合格价格。先卖防守再追高权益，会把结构调整变成新的择时错误。</p></div></details>
+</section>
+<section class="section markdown" id="sources"><p class="section-kicker">SOURCES & METHOD</p><h2>数据来源与口径</h2>
+<p>本报告使用本仓库虚拟环境中的以下公开市场接口。联网阶段只下载全市场公开快照，持仓代码仅在本地离线匹配：</p>
+<ul class="source-list">
+<li>A股指数：<code>ak.stock_zh_index_spot_sina()</code></li>
+<li>ETF行情：<code>ak.fund_etf_spot_em()</code></li>
+<li>开放式基金正式净值：<code>ak.fund_open_fund_daily_em()</code></li>
+<li>中证指数估值：<code>ak.stock_zh_index_value_csindex()</code></li>
+<li>港股快照：<code>ak.stock_hk_spot()</code></li>
+<li>上海黄金交易所：<code>ak.spot_quotations_sge()</code></li>
+</ul>
+<p>本地资料：</p>
+<ul class="source-list">
+<li>持仓：<a href="./fund_holdings.md"><code>fund_holdings.md</code></a></li>
+<li>方法：<a href="./valuation_investment_method.md"><code>valuation_investment_method.md</code></a></li>
+<li>前一份报告：<a href="./dca_analysis_20260723.md"><code>dca_analysis_20260723.md</code></a></li>
+<li>AI产业研究：<a href="./ai_industry_research_20260723.md"><code>ai_industry_research_20260723.md</code></a></li>
+</ul>
+<p>外部资料：</p>
+<ul class="source-list">
+<li>国家统计局，2026年1—6月份全国规模以上工业企业利润：<a href="https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202607/t20260727_1964194.html" target="_blank" rel="noopener noreferrer">https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202607/t20260727_1964194.html</a></li>
+<li>国家统计局，上半年工业企业利润数据解读：<a href="https://www.stats.gov.cn/xxgk/jd/sjjd2020/202607/t20260727_1964193.html" target="_blank" rel="noopener noreferrer">https://www.stats.gov.cn/xxgk/jd/sjjd2020/202607/t20260727_1964193.html</a></li>
+<li>中新网，7月27日A股午评：<a href="https://www.chinanews.com/cj/2026/07-27/10667158.shtml" target="_blank" rel="noopener noreferrer">https://www.chinanews.com/cj/2026/07-27/10667158.shtml</a></li>
+<li>上海证券报，7月24日市场与半导体设备：<a href="https://paper.cnstock.com/html/2026-07/25/content_2248761.htm" target="_blank" rel="noopener noreferrer">https://paper.cnstock.com/html/2026-07/25/content_2248761.htm</a></li>
+<li>国家发展改革委，《可再生能源发展“十五五”规划》：<a href="https://www.ndrc.gov.cn/xxgk/zcfb/tz/202607/t20260723_1406641.html" target="_blank" rel="noopener noreferrer">https://www.ndrc.gov.cn/xxgk/zcfb/tz/202607/t20260723_1406641.html</a></li>
+<li>黄金周报与美联储议息前瞻：<a href="https://www.nbd.com.cn/articles/2026-07-27/4516626.html" target="_blank" rel="noopener noreferrer">https://www.nbd.com.cn/articles/2026-07-27/4516626.html</a></li>
+</ul>
+<p>数据优先级：政府部门、交易所、指数公司和公司财报高于媒体；正式净值高于盘中估算；今日指数涨幅只能用于近似估值和损益，不能替代正式基金净值。报告冻结于2026年7月27日A股收盘。</p>
+</section></div>
+      <footer>2026-07-27 收盘投资决策 · HTML由同名Markdown生成</footer>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll('.nav-list a')];
+      const sections = links.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const setActive = (id) => {
+        links.forEach((link) => {
+          const active = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      };
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      }, { rootMargin: '-18% 0px -68% 0px', threshold: [0.02, 0.2] });
+      sections.forEach((section) => observer.observe(section));
+      setActive('summary');
+      document.getElementById('print-report').addEventListener('click', () => window.print());
+      window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach((item) => { item.open = true; }));
+    })();
+  </script>
+</body>
+</html>
