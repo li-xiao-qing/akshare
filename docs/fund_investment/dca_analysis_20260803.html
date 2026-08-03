@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026年8月3日收盘持仓、市场估值、AI产业与长期动作分析">
+  <link rel="icon" href="data:,">
+  <title>2026-08-03 收盘投资决策</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --ink-soft: #465463;
+      --muted: #6b7785;
+      --paper: #fff;
+      --canvas: #edf1f4;
+      --panel: #f6f8fa;
+      --line: #d8dfe6;
+      --line-strong: #aeb9c5;
+      --nav: #202a35;
+      --nav-active: #2d3a47;
+      --teal: #14756e;
+      --loss: #b42318;
+      --loss-soft: #fcebea;
+      --warn: #a15c07;
+      --warn-soft: #fff3df;
+      --hold: #175cd3;
+      --safe: #087443;
+      --safe-soft: #e8f6ee;
+      --sans: "SF Pro Text", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      --display: "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.72;
+      letter-spacing: 0;
+    }
+    a { color: var(--hold); text-underline-offset: 3px; }
+    a:hover { color: #0b4ba8; }
+    :focus-visible { outline: 3px solid rgba(23, 92, 211, .35); outline-offset: 3px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 252px minmax(0, 1fr);
+      width: min(1500px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--paper);
+      box-shadow: 0 0 0 1px rgba(174, 185, 197, .45);
+    }
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 26px 20px 20px;
+      overflow-y: auto;
+      color: #e9eef4;
+      background: var(--nav);
+      border-right: 1px solid #354250;
+    }
+    .brand { padding: 0 8px 21px; border-bottom: 1px solid #465363; }
+    .brand-mark { display: block; width: 30px; height: 5px; margin-bottom: 14px; background: #63c7bd; }
+    .brand strong { display: block; font-family: var(--display); font-size: 18px; line-height: 1.4; }
+    .brand span { color: #aebbc9; font-size: 12px; }
+    .nav-label { margin: 22px 8px 8px; color: #8998a9; font-size: 11px; font-weight: 750; text-transform: uppercase; }
+    .nav-list { margin: 0; padding: 0; list-style: none; }
+    .nav-list a {
+      display: grid;
+      grid-template-columns: 25px minmax(0, 1fr);
+      gap: 7px;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 8px;
+      color: #bac6d2;
+      border-left: 2px solid transparent;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .nav-list a span:first-child { color: #738496; font-family: var(--mono); font-size: 10px; }
+    .nav-list a:hover { color: #fff; background: #293541; }
+    .nav-list a.active { color: #fff; background: var(--nav-active); border-left-color: #63c7bd; }
+    .side-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid #465363;
+    }
+    .side-actions button,
+    .side-actions a {
+      display: grid;
+      place-items: center;
+      min-height: 37px;
+      padding: 7px;
+      color: #e7edf4;
+      background: transparent;
+      border: 1px solid #607083;
+      border-radius: 4px;
+      font: inherit;
+      font-size: 12px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .side-actions button:hover,
+    .side-actions a:hover { background: #2b3946; border-color: #91a2b4; }
+
+    main { min-width: 0; }
+    .hero {
+      padding: 48px clamp(28px, 5vw, 72px) 42px;
+      color: #f8fafc;
+      background: #17212b;
+      border-bottom: 6px solid #63c7bd;
+    }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 18px; color: #aebbc9; font-size: 12px; font-weight: 650; }
+    .hero h1 { max-width: 900px; margin: 0; font-family: var(--display); font-size: 42px; line-height: 1.16; font-weight: 760; }
+    .hero-subtitle { max-width: 820px; margin: 17px 0 0; color: #c4cfda; font-size: 17px; }
+    .hero-thesis {
+      display: grid;
+      grid-template-columns: 9px minmax(0, 1fr);
+      gap: 16px;
+      max-width: 920px;
+      margin-top: 28px;
+      padding: 18px 20px;
+      color: #fff;
+      background: #222f3b;
+      border: 1px solid #40505f;
+      border-radius: 6px;
+      font-size: 17px;
+      font-weight: 720;
+    }
+    .hero-thesis::before { content: ""; background: #ffca63; border-radius: 2px; }
+
+    .content { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 clamp(22px, 4vw, 56px) 70px; }
+    .section { min-width: 0; padding: 48px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
+    .section:last-child { border-bottom: 0; }
+    .section-kicker { margin: 0 0 5px; color: var(--teal); font-size: 12px; font-weight: 800; }
+    .section h2 { margin: 0 0 22px; font-family: var(--display); font-size: 28px; line-height: 1.3; }
+    .section h3 { margin: 32px 0 11px; font-size: 18px; line-height: 1.4; }
+    .lede { max-width: 870px; color: var(--ink-soft); font-size: 16px; }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    .mono { font-family: var(--mono); }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 26px; }
+    .kpi {
+      min-width: 0;
+      min-height: 122px;
+      padding: 17px 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--line-strong);
+      border-radius: 6px;
+    }
+    .kpi.loss { border-top-color: var(--loss); }
+    .kpi.safe { border-top-color: var(--safe); }
+    .kpi.warn { border-top-color: var(--warn); }
+    .kpi-label { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .kpi-value { display: block; margin-top: 7px; font-family: var(--mono); font-size: 25px; line-height: 1.2; font-weight: 760; white-space: nowrap; }
+    .negative { color: var(--loss); }
+    .positive { color: var(--safe); }
+    .kpi-note { display: block; margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+
+    .callout { margin: 22px 0; padding: 18px 20px; color: var(--ink-soft); background: var(--panel); border-left: 4px solid var(--teal); }
+    .callout strong { color: var(--ink); }
+    .callout.loss { background: var(--loss-soft); border-left-color: var(--loss); }
+    .callout.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+    .callout.safe { background: var(--safe-soft); border-left-color: var(--safe); }
+
+    .table-wrap { width: 100%; margin: 18px 0 24px; overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; min-width: 700px; border-collapse: collapse; background: #fff; font-size: 13px; }
+    th, td { padding: 11px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #344252; background: #f0f3f6; font-size: 12px; font-weight: 760; }
+    tr:last-child td { border-bottom: 0; }
+    td.number, th.number { text-align: right; font-family: var(--mono); white-space: nowrap; }
+    td.action { min-width: 225px; }
+
+    .breadth {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 24px 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .breadth-item { padding: 18px; background: #fff; border-right: 1px solid var(--line); }
+    .breadth-item:last-child { border-right: 0; }
+    .breadth-item b { display: block; color: var(--teal); font-family: var(--mono); font-size: 22px; }
+    .breadth-item span { color: var(--muted); font-size: 12px; }
+
+    .formula {
+      margin: 20px 0;
+      padding: 20px;
+      overflow-x: auto;
+      color: #f4f7fa;
+      background: #222d38;
+      border-radius: 6px;
+      font-family: var(--mono);
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+    .action-list { margin: 18px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .action-list li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .action-list span:first-child { color: var(--teal); font-family: var(--mono); font-weight: 760; }
+    .status-hold { color: var(--hold); font-weight: 720; }
+    .status-stop { color: var(--loss); font-weight: 720; }
+    .status-wait { color: var(--warn); font-weight: 720; }
+    .status-keep { color: var(--safe); font-weight: 720; }
+    .source-list { padding-left: 20px; }
+    .source-list li { margin: 9px 0; }
+    footer { padding: 20px clamp(22px, 4vw, 56px) 30px; color: var(--muted); background: var(--panel); border-top: 1px solid var(--line); font-size: 12px; }
+
+    @media (max-width: 1100px) {
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .breadth { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .breadth-item:nth-child(2) { border-right: 0; }
+      .breadth-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .sidebar { position: relative; z-index: 2; height: auto; padding: 18px 16px 12px; }
+      .brand { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; }
+      .brand-mark { width: 24px; margin: 0; }
+      .nav-label { margin: 13px 7px 5px; }
+      .nav-list { display: flex; gap: 2px; overflow-x: auto; }
+      .nav-list a { display: block; min-width: max-content; min-height: 34px; padding: 7px 10px; border-left: 0; border-bottom: 2px solid transparent; }
+      .nav-list a span:first-child { display: none; }
+      .nav-list a.active { border-left-color: transparent; border-bottom-color: #63c7bd; }
+      .side-actions { display: none; }
+      .hero { padding-top: 36px; }
+      .hero h1 { font-size: 34px; }
+    }
+    @media (max-width: 580px) {
+      body { font-size: 14px; }
+      .hero { padding: 30px 20px 28px; }
+      .hero h1 { font-size: 29px; }
+      .hero-subtitle, .hero-thesis { font-size: 15px; }
+      .content { padding: 0 18px 50px; }
+      .section { padding: 38px 0; }
+      .section h2 { font-size: 24px; }
+      .kpi-grid, .breadth { grid-template-columns: minmax(0, 1fr); }
+      .kpi { min-height: 104px; }
+      .kpi-value { font-size: 23px; }
+      .breadth-item { border-right: 0; border-bottom: 1px solid var(--line); }
+      .breadth-item:last-child { border-bottom: 0; }
+    }
+    @media print {
+      body { background: #fff; font-size: 11px; }
+      .layout { display: block; box-shadow: none; }
+      .sidebar { display: none; }
+      .hero { padding: 28px 34px; color: var(--ink); background: #fff; border-bottom: 2px solid #333; }
+      .hero-meta, .hero-subtitle { color: #555; }
+      .hero-thesis { color: var(--ink); background: #fff; border-color: #999; }
+      .content { max-width: none; padding: 0 34px; }
+      .section { padding: 24px 0; break-inside: avoid; }
+      .table-wrap { overflow: visible; }
+      table { min-width: 0; font-size: 9px; }
+      footer { padding: 18px 34px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div><strong>投资决策复盘</strong><span>2026 · 08 · 03 · 收盘</span></div>
+      </div>
+      <p class="nav-label">报告目录</p>
+      <nav aria-label="报告目录">
+        <ul class="nav-list">
+          <li><a href="#summary"><span>01</span><span>今日动作</span></a></li>
+          <li><a href="#market"><span>02</span><span>市场结构</span></a></li>
+          <li><a href="#principle"><span>03</span><span>第一性原理</span></a></li>
+          <li><a href="#portfolio"><span>04</span><span>持仓影响</span></a></li>
+          <li><a href="#valuation"><span>05</span><span>估值判断</span></a></li>
+          <li><a href="#holdings"><span>06</span><span>资产判断</span></a></li>
+          <li><a href="#ai"><span>07</span><span>AI产业</span></a></li>
+          <li><a href="#dividend"><span>08</span><span>红利低波</span></a></li>
+          <li><a href="#assets"><span>09</span><span>其他资产</span></a></li>
+          <li><a href="#dca"><span>10</span><span>4%定投法</span></a></li>
+          <li><a href="#gaps"><span>11</span><span>主要遗漏</span></a></li>
+          <li><a href="#plan"><span>12</span><span>组合提示</span></a></li>
+          <li><a href="#audit"><span>13</span><span>对抗审查</span></a></li>
+          <li><a href="#sources"><span>14</span><span>来源口径</span></a></li>
+        </ul>
+      </nav>
+      <div class="side-actions">
+        <button id="print-report" type="button">打印</button>
+        <a href="./dca_analysis_20260803.md" title="打开Markdown源文档">源文档</a>
+      </div>
+    </aside>
+
+    <main>
+      <header class="hero" id="top">
+        <div class="hero-meta">
+          <span>A股指数与ETF 15:00收盘</span>
+          <span>正式净值基准 2026-07-31</span>
+          <span>账户基准约 190,587 元</span>
+        </div>
+        <h1>科技硬件集中去估值，不是所有资产同步失速</h1>
+        <p class="hero-subtitle">沪深300跌0.98%，科创50跌5.08%，半导体设备跌9.70%；光伏、新能源逆势上涨。价格结构更支持“高估值硬件重定价”，不支持把今天解释成AI需求或全市场盈利同时坍塌。</p>
+        <div class="hero-thesis">现有基金没有必须卖出的资产层证据，也没有合格的新买点。医疗、消费、光伏、新能源和科技均持有；半导体跌幅虽超过4%，但估值与现金流门未通过，不能机械抄底。</div>
+      </header>
+
+      <div class="content">
+        <section class="section" id="summary">
+          <p class="section-kicker">DECISION FIRST</p>
+          <h2>今日动作先行</h2>
+          <div class="kpi-grid">
+            <div class="kpi loss"><span class="kpi-label">科创50</span><span class="kpi-value negative">-5.08%</span><span class="kpi-note">科技硬件集中重定价</span></div>
+            <div class="kpi loss"><span class="kpi-label">半导体设备</span><span class="kpi-value negative">-9.70%</span><span class="kpi-note">跌幅大不等于绝对低估</span></div>
+            <div class="kpi safe"><span class="kpi-label">光伏 / 新能源</span><span class="kpi-value positive" style="font-size:20px">+1.96% / +0.62%</span><span class="kpi-note">逆势上涨，尚非盈利拐点</span></div>
+            <div class="kpi warn"><span class="kpi-label">账户估算</span><span class="kpi-value">-0.1%~-0.5%</span><span class="kpi-note">约-110至-950元</span></div>
+          </div>
+
+          <div class="callout safe"><strong>核心结论：</strong>今天不是“全面减仓日”，也不是“科技抄底日”。现有基金以持有为主；新增资金继续等待估值、基本面和执行价格同时通过。</div>
+
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>基金或方向</th><th>今天与估值</th><th>资产本身动作</th></tr></thead>
+              <tbody>
+                <tr><td>中欧医疗健康A（<span class="mono">003095</span>）</td><td>医疗跌0.78%，PE约27.47倍，合理偏低</td><td class="action"><span class="status-keep">持有，不卖、不补</span></td></tr>
+                <tr><td>消费（<span class="mono">000083</span>）、食品（<span class="mono">001631</span>）、白酒（<span class="mono">012414</span>）</td><td>低估至合理偏低，需求与回款尚未反转</td><td class="action"><span class="status-keep">持有，不在低位卖；暂不新增</span></td></tr>
+                <tr><td>光伏A（<span class="mono">011102</span>）、新能源A（<span class="mono">012831</span>）</td><td>逆势上涨，长期需求仍在，供给与现金流待验证</td><td class="action"><span class="status-hold">持有，不追涨、不补仓</span></td></tr>
+                <tr><td>信澳核心科技A（<span class="mono">007484</span>）</td><td>AI跌2.49%，半导体跌7.16%，估值仍高</td><td class="action"><span class="status-hold">持有，不恐慌卖、不抄底</span></td></tr>
+                <tr><td>两只防守产品与三只QDII</td><td>票息和海外盈利决定回报，A股波动不是交易信号</td><td class="action"><span class="status-keep">继续持有</span></td></tr>
+                <tr><td>红利低波</td><td>PE约8.12倍、股息率约4.67%，相对历史非明显低估</td><td class="action"><span class="status-wait">等待，不买也不卖</span></td></tr>
+                <tr><td>阿里、中芯、黄金</td><td>阿里大涨，中芯回调，黄金接近前收</td><td class="action"><span class="status-wait">均不追价建仓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="market">
+          <p class="section-kicker">MARKET STRUCTURE</p>
+          <h2>大盘约跌1%，芯片链显著更弱</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>指数</th><th class="number">收盘</th><th class="number">涨跌</th><th>含义</th></tr></thead>
+              <tbody>
+                <tr><td>上证指数</td><td class="number">3809.66</td><td class="number negative">-0.59%</td><td>大盘走弱，但并非失序下跌</td></tr>
+                <tr><td>沪深300</td><td class="number">4543.18</td><td class="number negative">-0.98%</td><td>权重资产同步承压</td></tr>
+                <tr><td>深证成指</td><td class="number">13448.29</td><td class="number negative">-0.96%</td><td>成长整体下跌约1%</td></tr>
+                <tr><td>创业板指</td><td class="number">3302.55</td><td class="number negative">-1.24%</td><td>高弹性成长更弱</td></tr>
+                <tr><td>科创50</td><td class="number">1552.89</td><td class="number negative">-5.08%</td><td>芯片与高估值科技集中重定价</td></tr>
+                <tr><td>中证医疗</td><td class="number">6463.62</td><td class="number negative">-0.78%</td><td>普通调整，未出现独立崩塌</td></tr>
+                <tr><td>中证白酒</td><td class="number">6875.70</td><td class="number negative">-0.92%</td><td>需求预期仍弱，跌幅接近大盘</td></tr>
+                <tr><td>中证新能源</td><td class="number">2386.96</td><td class="number positive">+0.68%</td><td>逆势上涨，尚不能证明盈利拐点</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>ETF分化揭示真实主线</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>方向</th><th class="number">收盘涨跌</th><th class="number">相对沪深300</th><th>解释</th></tr></thead>
+              <tbody>
+                <tr><td>半导体设备ETF</td><td class="number negative">-9.70%</td><td class="number negative">-8.72个百分点</td><td>最拥挤、久期长、资本开支敏感的环节去估值</td></tr>
+                <tr><td>半导体ETF</td><td class="number negative">-7.16%</td><td class="number negative">-6.18个百分点</td><td>芯片链整体风险偏好下降</td></tr>
+                <tr><td>人工智能ETF</td><td class="number negative">-2.49%</td><td class="number negative">-1.51个百分点</td><td>承压，但明显好于设备</td></tr>
+                <tr><td>云计算 / 通信ETF</td><td class="number">-0.36% / 0.00%</td><td class="number positive">+0.62 / +0.98个百分点</td><td>平台、应用与部分基础设施相对抗跌</td></tr>
+                <tr><td>光伏 / 新能源ETF</td><td class="number positive">+1.96% / +0.62%</td><td class="number positive">+2.94 / +1.60个百分点</td><td>周期轮动或预期改善，现金流未确认</td></tr>
+                <tr><td>红利低波 / 黄金ETF</td><td class="number">-0.08% / -0.19%</td><td class="number positive">均跑赢大盘</td><td>防守属性有效，价格仍不构成追买理由</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout warn"><strong>因果边界：</strong>截至核验时，没有监管、交易所或公司公告能够把今天半导体深跌归因于某一个新事件。更合理的待验证假设是市场压缩高估值硬件的远期溢价、审查AI资本开支回报；这不是已确认的单一新闻因果。</div>
+          <p class="muted">全A涨跌家数接口收盘时被数据源断开，因此本报告不编造市场宽度。</p>
+        </section>
+
+        <section class="section" id="principle">
+          <p class="section-kicker">FIRST PRINCIPLES</p>
+          <h2>跌幅不是价值，价格只是一个变量</h2>
+          <div class="formula">长期回报 = 盈利与自由现金流增长
++ 利息或可持续分红
++/- 估值变化
+- 费用、永久损失与错误集中</div>
+          <ol>
+            <li><strong>设备跌近10%：</strong>只提高了相对昨天的安全边际；若绝对估值和资本强度仍高，跌后仍可昂贵。</li>
+            <li><strong>医疗跌约1%：</strong>没有改变老龄化、创新药、器械国产化和支付约束，也不足以触发4%买入。</li>
+            <li><strong>光伏新能源上涨：</strong>改变的是价格，不是产能、库存、毛利率和经营现金流。</li>
+            <li><strong>消费下跌：</strong>估值赔率提高，但居民收入、渠道库存与现金回款仍要验证。</li>
+            <li><strong>AI需求与股东回报：</strong>收入必须覆盖GPU、网络、存储、电力、折旧和后续资本开支。</li>
+            <li><strong>成本是沉没成本：</strong>是否卖出取决于从今天起的预期回报，不取决于能否回本。</li>
+          </ol>
+          <div class="callout">6月制造业PMI为50.3%、新订单为51.2%；上半年规上工业利润增长18.7%，电子设备制造利润增长96.9%，但电气机械下降8.6%、汽车下降19.5%。这支持“产业利润重新分配”，不支持“所有行业盈利一起恶化”。</div>
+        </section>
+
+        <section class="section" id="portfolio">
+          <p class="section-kicker">PORTFOLIO IMPACT</p>
+          <h2>正式净值基准与今日账户影响</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>基金</th><th class="number">最新净值</th><th class="number">估算市值</th><th class="number">权重</th><th>职责</th></tr></thead>
+              <tbody>
+                <tr><td>天弘永利债券B（<span class="mono">420102</span>）</td><td class="number">1.2581</td><td class="number">88,087元</td><td class="number">46.22%</td><td>主要防守</td></tr>
+                <tr><td>中欧医疗健康A（<span class="mono">003095</span>）</td><td class="number">1.8994</td><td class="number">42,650元</td><td class="number">22.38%</td><td>医疗卫星</td></tr>
+                <tr><td>汇添富鑫享添利（<span class="mono">012951</span>）</td><td class="number">1.1691</td><td class="number">20,008元</td><td class="number">10.50%</td><td>辅助防守</td></tr>
+                <tr><td>汇添富消费行业（<span class="mono">000083</span>）</td><td class="number">4.6990</td><td class="number">13,869元</td><td class="number">7.28%</td><td>主动消费</td></tr>
+                <tr><td>天弘中证光伏A（<span class="mono">011102</span>）</td><td class="number">0.7017</td><td class="number">8,985元</td><td class="number">4.71%</td><td>光伏主题</td></tr>
+                <tr><td>南方新能源A（<span class="mono">012831</span>）</td><td class="number">0.5842</td><td class="number">5,983元</td><td class="number">3.14%</td><td>新能源主题</td></tr>
+                <tr><td>信澳核心科技A（<span class="mono">007484</span>）</td><td class="number">1.2060</td><td class="number">4,978元</td><td class="number">2.61%</td><td>科技观察仓</td></tr>
+                <tr><td>其余五只基金</td><td class="number">日期不一</td><td class="number">6,027元</td><td class="number">3.16%</td><td>海外与重复小仓</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout loss"><strong>今日估算约-0.1%至-0.5%，即-110至-950元。</strong> 医疗可能拖累210至510元，科技拖累125至360元；光伏与新能源贡献约210至240元。QDII仍取决于今晚海外收盘和汇率。</div>
+          <p>正式净值基准约190,587元。防守产品约56.72%，医疗约22.38%，合计79.10%。这些权重只描述组合风险，不用于把任何行业判成资产层卖出。</p>
+        </section>
+
+        <section class="section" id="valuation">
+          <p class="section-kicker">VALUATION</p>
+          <h2>最新机械估值</h2>
+          <p class="lede">以下按上一交易日近似值与今日价格机械调整，只作方向判断，不冒充指数公司正式估值或十年精确分位。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>方向</th><th class="number">近似估值</th><th>区间</th><th>买入判断</th></tr></thead>
+              <tbody>
+                <tr><td>沪深300</td><td class="number">PE 14.43倍</td><td>合理偏高</td><td>持有，非严格低估首仓</td></tr>
+                <tr><td>中证医疗</td><td class="number">PE 27.47倍</td><td>合理偏低</td><td>已有仓持有，今日跌幅不足以新增</td></tr>
+                <tr><td>白酒 / 消费</td><td class="number">PE 20.30 / 19.63倍</td><td>低估至合理偏低</td><td>估值接近通过，基本面只通过一半</td></tr>
+                <tr><td>红利低波</td><td class="number">PE 8.12倍 / 股息率4.67%</td><td>相对历史合理偏高</td><td>继续等待</td></tr>
+                <tr><td>光伏 / 新能源</td><td class="number">PE 26.20 / 25.34倍</td><td>周期中部，PE易失真</td><td>供给与自由现金流门未通过</td></tr>
+                <tr><td>人工智能主题</td><td class="number">PE 54.70倍</td><td>高估</td><td>不新增主题仓</td></tr>
+                <tr><td>半导体产业</td><td class="number">PE 133.23倍</td><td>极高且周期性强</td><td>下跌后仍无低估证据</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>半导体、光伏和新能源必须结合PB、周期中枢利润、折旧、资本开支与自由现金流；主动基金还要穿透实际持仓。绝对PE低也不等于相对自身历史低估。</p>
+        </section>
+
+        <section class="section" id="holdings">
+          <p class="section-kicker">HOLDING ACTIONS</p>
+          <h2>按基金与行业本身判断</h2>
+          <h3>防守产品</h3>
+          <p>天弘永利债券B（<span class="mono">420102</span>）与汇添富鑫享添利（<span class="mono">012951</span>）继续持有。新增前核对久期、信用下沉、权益仓位、锁定期与资金期限；防守基金也有利率和信用尾部风险。</p>
+
+          <h3>中欧医疗健康A（<span class="mono">003095</span>）</h3>
+          <p>最新净值相对成本仍需上涨约18.7%回本，但成本不决定动作。医疗约27.47倍PE，长期受益于老龄化、创新药和器械国产化。上半年创新药对外授权81笔、总额约1100亿美元，并批准38个1类创新药和42个创新器械；但授权含或有里程碑，不能当作当期利润，也不能外推整个医疗行业。</p>
+          <p><span class="status-keep">资产层继续持有，不卖、不补；等待盈利预期稳定或新的合格买点。</span></p>
+
+          <h3>消费、食品与白酒</h3>
+          <p>上半年社零增长1.3%，居民人均可支配收入实际增长4.2%，消费支出实际增长2.7%，说明消费仍增长但强度偏弱。<span class="mono">000083</span>、<span class="mono">001631</span>与<span class="mono">012414</span>估值低至合理偏低，均持有观察；等待收入预期、渠道库存与现金回款至少两项改善。白酒C类份额过窄且长期费用需单独核对。</p>
+
+          <h3>光伏与新能源</h3>
+          <p>截至4月底可再生能源装机超过24亿千瓦，终端需求长期增长得到确认；但电气机械和汽车利润下滑说明需求没有自动转化为制造商股东回报。<span class="mono">011102</span>与<span class="mono">012831</span>继续持有、不追涨，等待价格、产能利用率、库存和经营现金流确认。</p>
+          <p>“回本再卖”不是规则。光伏按最新净值仍需约49.6%回本，新能源需约10.2%；当前持有是因为长期需求尚在，而不是因为成本线具有价值。</p>
+
+          <h3>海外与科技</h3>
+          <p>摩根标普500A（<span class="mono">017641</span>）可作为海外核心雏形；两只纳指基金（<span class="mono">040046</span>、<span class="mono">270042</span>）高度重复，现有份额持有。信澳核心科技A（<span class="mono">007484</span>）继续持有、不补仓；其最新净值相对成本需约102.9%回本，更应核验最新持仓、换手、费用和扣费后超额收益，而非用成本锚定判断。</p>
+        </section>
+
+        <section class="section" id="ai">
+          <p class="section-kicker">AI INDUSTRY</p>
+          <h2>机会真实，资本回报决定胜负</h2>
+          <div class="formula">AI股东回报 = AI收入 × 可持续利润率
+- GPU、存储、网络、电力、折旧和融资成本
+- 后续资本开支
+- 买入时支付的估值</div>
+          <p>微软季度收入增长18%、Azure增长43%、商业剩余履约义务增长84%至6780亿美元，证明云和AI需求真实。Meta收入增长28%，但单季资本开支310.8亿美元、自由现金流仅7.84亿美元，并给出全年1300亿至1450亿美元资本开支预期，证明产业增长也可能先消耗股东现金。</p>
+          <p>半导体设备跌9.70%，半导体跌7.16%，AI跌2.49%，云计算仅跌0.36%，通信持平。排序更像市场压缩硬件远期溢价，而不是所有AI需求同日消失。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>优先级</th><th>环节</th><th>验证指标</th></tr></thead>
+              <tbody>
+                <tr><td class="number">1</td><td>云平台、企业软件、AI应用</td><td>AI增量收入、续费、毛利率与自由现金流</td></tr>
+                <tr><td class="number">2</td><td>网络、存储、电力、先进封装等瓶颈</td><td>订单、良率、毛利率与扩产回报</td></tr>
+                <tr><td class="number">3</td><td>国产设备与材料</td><td>客户验证、收入、应收账款、资本开支与估值</td></tr>
+                <tr><td class="number">4</td><td>只有AI标签的公司</td><td>无收入和现金流，不进入长期核心</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout warn"><strong>你的直接动作：</strong>不需要新建AI仓。已有信澳核心科技A约2.61%，已经提供小额暴露。下一笔至少要求持仓透明、估值合理偏低、订单收入增长、自由现金流覆盖资本开支四项中的三项通过。</div>
+          <p>长期看好AI与今天买高估值主题并不等价。最值得跟踪的是可验证货币化的云与应用、以及真实稀缺的基础设施瓶颈。</p>
+        </section>
+
+        <section class="section" id="dividend">
+          <p class="section-kicker">DIVIDEND LOW VOL</p>
+          <h2>防守有效，但尚非明显低估</h2>
+          <p>红利低波ETF华泰柏瑞（<span class="mono">512890</span>）收跌0.08%，近似PE约8.12倍、股息率约4.67%。</p>
+          <div class="formula">长期回报 = 可持续股息率 + 盈利增长 +/- 估值变化
+- 分红下调、行业集中、税费与产品费用</div>
+          <ol>
+            <li>绝对8倍PE不能代替指数自身历史分位。</li>
+            <li>银行、能源、运营商等权重行业的股息要由利润、资本充足率和自由现金流覆盖。</li>
+            <li>指数成分股分红不等于场外基金一定现金分红，基金分红还受合同和管理人安排约束。</li>
+            <li>即使基金不现金分红，底层企业回报仍会进入净值；红利低波不只靠基金分红。</li>
+          </ol>
+          <p><span class="status-wait">继续关注，今天不买。</span> 等股息率进入更有吸引力区间，再核验场外基金费率、跟踪误差、合同和历史现金分红。</p>
+        </section>
+
+        <section class="section" id="assets">
+          <p class="section-kicker">WATCH ASSETS</p>
+          <h2>阿里巴巴、中芯国际与黄金</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>资产</th><th class="number">行情快照</th><th>第一性原理判断</th><th>动作</th></tr></thead>
+              <tbody>
+                <tr><td>阿里巴巴-W（<span class="mono">09988</span>）</td><td class="number positive">125.2港元 / +7.01%</td><td>云外部收入增长40%，AI产品占云外部收入约30%；仍须扣除电商竞争和资本开支</td><td class="action"><span class="status-wait">不追涨，等回撤或业绩消化估值</span></td></tr>
+                <tr><td>中芯国际（<span class="mono">00981</span>）</td><td class="number negative">61.9港元 / -2.13%</td><td>利用率93.1%，但收入增8.1%、净利润仅增0.4%，资本支出高于经营现金流</td><td class="action"><span class="status-wait">不因下跌建仓，等现金流与估值改善</span></td></tr>
+                <tr><td>Au99.99 / 黄金ETF</td><td class="number">约884.3元/克 / -0.19%</td><td>央行和ETF需求有结构支撑，但黄金不产生经营现金流</td><td class="action"><span class="status-wait">不追价；无黄金时才规划不超4%保险仓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="muted">港股行情为14:47附近快照，尚未收盘；三项均不计入当前基金账户损益。</p>
+        </section>
+
+        <section class="section" id="dca">
+          <p class="section-kicker">EXECUTION METHOD</p>
+          <h2>跌超4%也不等于有效触发</h2>
+          <div class="formula">质量门 → 估值门 → 基本面门 → 组合预算
+→ 记录实际买入确认净值 P
+→ 下一笔仅在确认净值 &lt;= 0.96P 时执行</div>
+          <ul>
+            <li>医疗、消费和白酒跌约1%，未达到价格条件。</li>
+            <li>光伏与新能源上涨，不触发下跌分批。</li>
+            <li>半导体设备和半导体跌超4%，但估值、周期现金流和基金质量门未通过，触发无效。</li>
+            <li>红利低波只跌0.08%，且估值门未通过。</li>
+            <li>债券基金、黄金与个股不适合机械套用同一规则。</li>
+          </ul>
+          <div class="callout loss"><strong>当前还缺最后一次实际买入确认净值、金额和剩余预算。</strong> 4%法只能管理合格标的的执行节奏，不能把半导体设备跌9.70%变成自动买点。</div>
+        </section>
+
+        <section class="section" id="gaps">
+          <p class="section-kicker">RISK GAPS</p>
+          <h2>当前最大的遗漏</h2>
+          <ol class="action-list">
+            <li><span>01</span><div>主动基金最新完整持仓、行业暴露、换手率和扣费后超额收益尚未全部穿透。</div></li>
+            <li><span>02</span><div>光伏、新能源与半导体缺少统一的PB、产能利用率、库存、资本开支和自由现金流序列。</div></li>
+            <li><span>03</span><div>缺少每只基金最后一次实际买入确认净值、金额与战术预算，4%法无法严谨落地。</div></li>
+            <li><span>04</span><div>持仓文件仍是20260723快照；后续申赎或分红会使估算偏离。</div></li>
+            <li><span>05</span><div>家庭现金、房产、黄金、保险与未来三年支出未知，无法严格反推风险上限。</div></li>
+            <li><span>06</span><div>红利低波场外产品的合同分红、历史现金分红、费率和跟踪误差仍需逐只核验。</div></li>
+          </ol>
+          <div class="callout loss"><strong>最大认知遗漏：</strong>行业指数估值、主动基金质量与个人仓位是三道题。行业便宜不代表基金持仓便宜；基金合格不代表可以无限加仓；价格下跌也不代表基本面没恶化。</div>
+        </section>
+
+        <section class="section" id="plan">
+          <p class="section-kicker">LONG-TERM STRUCTURE</p>
+          <h2>独立的组合层提示</h2>
+          <p class="lede">本节不改变前面的资产层结论，只回答长期结构是否有效。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>角色</th><th class="number">参考目标</th><th class="number">当前约占比</th><th>调整方向</th></tr></thead>
+              <tbody>
+                <tr><td>防守资产</td><td class="number">40%</td><td class="number">56.72%</td><td>暂持有，核心权益出现合格价格后逐步释放</td></tr>
+                <tr><td>A股宽基核心</td><td class="number">22%</td><td class="number">0%</td><td>当前缺失，等待宽基合理偏低或低估</td></tr>
+                <tr><td>海外宽基核心</td><td class="number">12%</td><td class="number">1.11%</td><td>摩根标普500A可作为雏形</td></tr>
+                <tr><td>医疗卫星</td><td class="number">10%-12%</td><td class="number">22.38%</td><td>资产可持有；以后利用修复或再平衡窗口降低</td></tr>
+                <tr><td>红利低波</td><td class="number">7%</td><td class="number">0%</td><td>继续等待合格估值与产品</td></tr>
+                <tr><td>黄金保险</td><td class="number">4%</td><td class="number">未知</td><td>先合并家庭已有黄金</td></tr>
+                <tr><td>AI与成长卫星</td><td class="number">3%</td><td class="number">2.61%</td><td>已接近目标，不急于新增主题基金</td></tr>
+                <tr><td>其他行业卫星</td><td class="number">2%</td><td class="number">16.29%</td><td>长期停止新增重复主题，向核心宽基收敛</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>长期调整不是今天全部减仓，而是停止向重复主题投入新资金；当主题基本面修复、产品质量失败，或核心宽基出现更好赔率时，分批迁移。回本不是卖出条件：预期回报恶化时亏损也应卖，内在价值增长时回本也不必卖。</p>
+        </section>
+
+        <section class="section" id="audit">
+          <p class="section-kicker">ADVERSARIAL REVIEW</p>
+          <h2>对抗式审查</h2>
+          <h3>半导体设备跌近10%，还不够便宜吗？</h3>
+          <p>跌幅是相对昨天的变化，不是绝对价值。高估值、低利润基数和高资本开支行业跌后仍可能昂贵，现金流和估值门未通过前4%触发无效。</p>
+          <h3>AI趋势确定，为什么不立刻建仓？</h3>
+          <p>产业增长不等于股东回报。资本开支、折旧、竞争和买入估值都可能吞噬增长；你已有2.61%的科技观察仓，等待赔率不等于错过AI。</p>
+          <h3>医疗合理偏低，为什么不补？</h3>
+          <p>估值支持持有，但今日跌幅不足，主动基金持仓透明度有限，整体盈利拐点未确认。低估是必要条件，不是满仓的充分条件。</p>
+          <h3>光伏逆势上涨，是否已经反转？</h3>
+          <p>单日强势可能只是轮动。真正反转需要价格企稳、产能退出、库存下降和经营现金流共同确认。</p>
+          <h3>红利低波只有8倍PE，为何不买？</h3>
+          <p>必须与自身历史和股息率比较；约4.67%的股息率尚未提供明显安全边际，分红可持续性也需验证。</p>
+          <h3>阿里上涨7%，是否已经确认价值？</h3>
+          <p>单日上涨不会等比例增加未来自由现金流，反而直接减少新买入的安全边际。</p>
+          <h3>为何资产层都持有，组合层又要调整？</h3>
+          <p>“资产是否值得持有”和“应该持有多少”是两道题。好资产也可能与其他主题重复或占用过多风险预算。</p>
+        </section>
+
+        <section class="section" id="sources">
+          <p class="section-kicker">SOURCES &amp; METHOD</p>
+          <h2>数据来源与口径</h2>
+          <ul class="source-list">
+            <li>本仓库AKShare公开行情接口：A股指数、场内ETF、开放式基金净值、港股和上海黄金交易所行情。</li>
+            <li><a href="https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast">微软：2026财年第四季度业绩</a></li>
+            <li><a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx">Meta：2026年第二季度业绩</a></li>
+            <li><a href="https://www.miit.gov.cn/xwfb/bldhd/art/2026/art_0bd2e5ee157f46d4b97a449c235f3747.html">工信部：支持人工智能与芯片产业发展</a></li>
+            <li><a href="https://www.stats.gov.cn/sj/zxfbhjd/202607/t20260715_1964127.html">国家统计局：上半年社会消费品零售总额</a></li>
+            <li><a href="https://www.stats.gov.cn/sj/zxfbhjd/202607/t20260715_1964129.html">国家统计局：上半年居民收入和消费支出</a></li>
+            <li><a href="https://www.stats.gov.cn/sj/zxfbhjd/202607/t20260727_1964194.html">国家统计局：上半年规模以上工业企业利润</a></li>
+            <li><a href="https://www.nhsa.gov.cn/art/2026/7/14/art_14_21423.html">国家医保局：创新药与创新器械进展</a></li>
+            <li><a href="https://www.nea.gov.cn/20260616/ab30f2b505764d13972ac14e7d3ffeed/c.html">国家能源局：可再生能源开发建设月度调度会</a></li>
+            <li><a href="https://www.alibabagroup.com/en-US/document-1991364841188622336">阿里巴巴：FY2026年度经营更新</a></li>
+            <li><a href="https://www.hkexnews.hk/listedco/listconews/sehk/2026/0514/2026051400914_c.pdf">港交所披露：中芯国际2026年第一季度报告</a></li>
+            <li><a href="https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q1-2026">世界黄金协会：2026年一季度黄金需求趋势</a></li>
+            <li><a href="./fund_holdings.md">当前持仓</a> · <a href="./valuation_investment_method.md">方法文档</a> · <a href="./dca_analysis_20260731.html">上一份报告</a> · <a href="./dca_analysis_20260803_source_notes.md">一手资料底稿</a></li>
+          </ul>
+          <div class="callout warn"><strong>数据限制：</strong>A股为收盘数据；全A宽度接口失败；开放式基金使用7月31日正式净值、QDII使用7月30日净值；主动基金使用指数代理；港股为14:47快照；Au99.99采用15:00前最后稳定报价；机械估值不替代正式分位和现金流估值。</div>
+        </section>
+      </div>
+
+      <footer>个人研究记录 · 行情复核 2026-08-03 15:00 CST · 市场有风险，投资需谨慎</footer>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll(".nav-list a")];
+      const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+      const setActive = () => {
+        let current = sections[0];
+        for (const section of sections) {
+          if (section.getBoundingClientRect().top <= 130) current = section;
+        }
+        links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + current.id));
+      };
+      document.getElementById("print-report").addEventListener("click", () => window.print());
+      window.addEventListener("scroll", setActive, { passive: true });
+      setActive();
+    })();
+  </script>
+</body>
+</html>
