@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>20260813 14:30盘中投资决策报告</title>
+  <style>
+    :root{--ink:#17212b;--soft:#465463;--muted:#6b7785;--paper:#fff;--canvas:#edf1f4;--panel:#f6f8fa;--line:#d8dfe6;--nav:#202a35;--nav-active:#2d3a47;--teal:#14756e;--green:#087443;--green-bg:#e8f6ee;--red:#b42318;--red-bg:#fcebea;--amber:#9a5a08;--amber-bg:#fff3df;--blue:#175cd3;--sans:"SF Pro Text","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;--display:"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;--mono:"SFMono-Regular","Cascadia Code","Roboto Mono",monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--canvas);font:15px/1.72 var(--sans);letter-spacing:0}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#0b4ba8}:focus-visible{outline:3px solid rgba(23,92,211,.35);outline-offset:3px}
+    .layout{display:grid;grid-template-columns:252px minmax(0,1fr);width:min(1500px,100%);min-height:100vh;margin:auto;background:var(--paper);box-shadow:0 0 0 1px rgba(174,185,197,.45)}
+    .sidebar{position:sticky;top:0;height:100vh;padding:26px 20px 20px;overflow-y:auto;color:#e9eef4;background:var(--nav);border-right:1px solid #354250}.brand{padding:0 8px 21px;border-bottom:1px solid #465363}.brand-mark{display:block;width:30px;height:5px;margin-bottom:14px;background:#63c7bd}.brand strong{display:block;font:760 18px/1.4 var(--display)}.brand span{color:#aebbc9;font-size:12px}.nav-label{margin:22px 8px 8px;color:#8998a9;font-size:11px;font-weight:750}.nav-list{margin:0;padding:0;list-style:none}.nav-list a{display:grid;grid-template-columns:25px minmax(0,1fr);gap:7px;align-items:center;min-height:38px;padding:7px 8px;color:#bac6d2;border-left:2px solid transparent;text-decoration:none;font-size:13px}.nav-list a span:first-child{color:#738496;font:10px var(--mono)}.nav-list a:hover{color:#fff;background:#293541}.nav-list a.active{color:#fff;background:var(--nav-active);border-left-color:#63c7bd}.side-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid #465363}.side-actions button,.side-actions a{display:grid;place-items:center;min-height:37px;padding:7px;color:#e7edf4;background:transparent;border:1px solid #607083;border-radius:4px;font:12px var(--sans);text-decoration:none;cursor:pointer}.side-actions button:hover,.side-actions a:hover{background:#2b3946}
+    main{min-width:0}.hero{padding:48px clamp(28px,5vw,72px) 42px;color:#f8fafc;background:#17212b;border-bottom:6px solid #63c7bd}.hero-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:18px;color:#aebbc9;font-size:12px;font-weight:650}.hero h1{max-width:920px;margin:0;font:760 42px/1.16 var(--display)}.hero-subtitle{max-width:900px;margin:17px 0 0;color:#c4cfda;font-size:17px}.hero-thesis{display:grid;grid-template-columns:9px minmax(0,1fr);gap:16px;max-width:940px;margin-top:28px;padding:18px 20px;color:#fff;background:#222f3b;border:1px solid #40505f;border-radius:6px;font-size:17px;font-weight:720}.hero-thesis:before{content:"";background:#ffca63;border-radius:2px}
+    .content{width:100%;max-width:1120px;margin:auto;padding:0 clamp(22px,4vw,56px) 70px}.intro{padding:30px 0 0;color:var(--soft)}.intro blockquote{margin:22px 0;padding:16px 20px;background:var(--amber-bg);border-left:4px solid var(--amber)}.section{min-width:0;padding:48px 0;border-bottom:1px solid var(--line);scroll-margin-top:20px}.section:last-child{border-bottom:0}.kicker{margin:0 0 5px;color:var(--teal);font-size:12px;font-weight:800}.section h2{margin:0 0 22px;font:760 28px/1.3 var(--display)}.section h3{margin:30px 0 10px;font-size:18px;line-height:1.4}.section p{max-width:940px}.section>p:first-of-type.kicker{max-width:none}.section strong{color:var(--ink)}code{font-family:var(--mono);font-size:.92em}p code,li code,td code{padding:1px 4px;color:#274357;background:#edf2f6;border-radius:3px}
+    .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 10px}.kpi{min-width:0;min-height:118px;padding:17px 18px;background:var(--panel);border:1px solid var(--line);border-top:4px solid #aeb9c5;border-radius:6px}.kpi.good{border-top-color:var(--green)}.kpi.bad{border-top-color:var(--red)}.kpi.warn{border-top-color:var(--amber)}.kpi small{display:block;color:var(--muted);font-weight:700}.kpi b{display:block;margin-top:7px;font:760 24px/1.2 var(--mono);white-space:nowrap}.kpi span{display:block;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.45}.pos{color:var(--green)}.neg{color:var(--red)}
+    blockquote{margin:22px 0;padding:16px 20px;color:var(--soft);background:var(--panel);border-left:4px solid var(--teal)}blockquote p{margin:0}.table-wrap{width:100%;margin:18px 0 24px;overflow-x:auto;border:1px solid var(--line);border-radius:6px}.section>table{display:block;width:100%;margin:18px 0 24px;overflow-x:auto;border:1px solid var(--line);border-radius:6px;border-collapse:collapse}.section table{width:100%;min-width:760px;border-spacing:0;background:#fff;font-size:13px}.section th,.section td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.section th{color:#344252;background:#f0f3f6;font-size:12px}.section tr:last-child td{border-bottom:0}.section pre{margin:20px 0;padding:20px;overflow-x:auto;color:#f4f7fa;background:#222d38;border-radius:6px;font:14px/1.8 var(--mono);white-space:pre-wrap}.section pre code{padding:0;color:inherit;background:transparent}.section ul,.section ol{padding-left:22px}.section li{margin:8px 0}.section hr{border:0;border-top:1px solid var(--line)}
+    footer{padding:20px clamp(22px,4vw,56px) 30px;color:var(--muted);background:var(--panel);border-top:1px solid var(--line);font-size:12px}
+    @media(max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:relative;height:auto;padding:18px 16px 12px}.brand{display:flex;align-items:center;gap:12px;padding-bottom:14px}.brand-mark{width:24px;margin:0}.nav-label{margin:13px 7px 5px}.nav-list{display:flex;gap:2px;overflow-x:auto}.nav-list a{display:block;min-width:max-content;min-height:34px;padding:7px 10px;border-left:0;border-bottom:2px solid transparent}.nav-list a span:first-child{display:none}.nav-list a.active{border-left:0;border-bottom-color:#63c7bd}.side-actions{display:none}.hero{padding-top:36px}.hero h1{font-size:34px}}
+    @media(max-width:580px){body{font-size:14px}.hero{padding:30px 20px 28px}.hero h1{font-size:29px}.hero-subtitle,.hero-thesis{font-size:15px}.content{padding:0 18px 50px}.section{padding:38px 0}.section h2{font-size:24px}.kpis{grid-template-columns:minmax(0,1fr)}.kpi{min-height:102px}.kpi b{font-size:22px}}
+    @media print{body{background:#fff;font-size:11px}.layout{display:block;box-shadow:none}.sidebar{display:none}.hero{padding:28px 34px;color:var(--ink);background:#fff;border-bottom:2px solid #333}.hero-meta,.hero-subtitle{color:#555}.hero-thesis{color:var(--ink);background:#fff}.content{max-width:none;padding:0 34px}.section{padding:24px 0;break-inside:avoid}.section table{min-width:0;font-size:9px}}
+
+.table-wrap table{width:100%;min-width:760px;border-spacing:0;background:#fff;font-size:13px}.table-wrap th,.table-wrap td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table-wrap th{color:#344252;background:#f0f3f6;font-size:12px}.table-wrap tr:last-child td{border-bottom:0}.table-wrap:focus{outline:3px solid #167f78;outline-offset:2px}.kpi small,.kpi span,footer{color:#56616e}@media(max-width:580px){.table-wrap table{min-width:700px}.hero-meta{gap:6px 12px}.nav-list{padding-bottom:4px}}</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><div><strong>投资决策复盘</strong><span>2026 · 08 · 13 · 14:30盘中</span></div></div>
+      <p class="nav-label">报告目录</p>
+      <nav aria-label="报告目录"><ul class="nav-list"><li><a href="#summary"><span>01</span><span>1. 今日持仓动作先行</span></a></li>
+<li><a href="#market"><span>02</span><span>2. 交易日门控与市场结构</span></a></li>
+<li><a href="#principle"><span>03</span><span>3. 第一性原理：今天究竟改变了什么</span></a></li>
+<li><a href="#portfolio"><span>04</span><span>4. 正式净值基准与盘中估算</span></a></li>
+<li><a href="#valuation"><span>05</span><span>5. 估值层：指标、适用性与置信度</span></a></li>
+<li><a href="#holdings"><span>06</span><span>6. 持仓资产与工具逐项判断</span></a></li>
+<li><a href="#ai"><span>07</span><span>7. AI产业链：产业增长不等于证券便宜</span></a></li>
+<li><a href="#dividend"><span>08</span><span>8. 红利、红利低波与A股宽基</span></a></li>
+<li><a href="#assets"><span>09</span><span>9. 阿里巴巴、中芯国际与黄金</span></a></li>
+<li><a href="#dca"><span>10</span><span>10. 4%定投法：今天没有可审计触发</span></a></li>
+<li><a href="#gaps"><span>11</span><span>11. 当前最大的遗漏</span></a></li>
+<li><a href="#plan"><span>12</span><span>12. 长期调整方向</span></a></li>
+<li><a href="#audit"><span>13</span><span>13. 对抗式审查</span></a></li>
+<li><a href="#sources"><span>14</span><span>14. 数据来源、口径与未确认风险</span></a></li></ul></nav>
+      <div class="side-actions"><button id="print-report" type="button">打印</button><a href="./dca_analysis_20260813.md">源文档</a></div>
+    </aside>
+    <main>
+      <header class="hero">
+        <div class="hero-meta"><span>2026-08-13 · A股14:34—14:38</span><span>正式持仓基准 ¥199,211.36</span><span>第一性原理 + 估值纪律 + 4%执行法</span></div>
+        <h1>医疗逆势走强，周期制造回落，今天仍不交易</h1>
+        <p class="hero-subtitle">全A下跌家数约为上涨家数2.82倍，但医疗、创新药、通信和服务器相对强。价格分化没有替代现金流、估值和组合门。</p>
+        <div class="hero-thesis">13项持仓全部继续持有；买入、卖出和减仓均为零；没有可审计的4%触发。</div>
+      </header>
+      <div class="content">
+        <div class="intro"><p>分析日期：20260813</p>
+<p>分析时点：A股官方宽基采用8月13日14:37—14:38行情，行业ETF采用14:34快照；沪深宽度约14:38；港股为约14:33抓取、字段14:18的延时快照；美股为8月12日收盘；Au99.99采用14:37更新。本文不等待15:00收盘，也不把盘中价格或估算净值写成正式收盘数据。</p>
+<p>持仓基准：<a href="./fund_holdings.md"><code>fund_holdings.md</code></a> 中的20260811快照。用普通基金8月12日、QDII 8月11日最新正式净值校准，账户约 <code>199,211.36元</code>。</p>
+<p>方法依据：<a href="./valuation_investment_method.md"><code>valuation_investment_method.md</code></a>。先判断未来可分配自由现金流与永久损失，再判断估值、工具、组合和执行；4%法只决定合格资产如何分批买。</p>
+<blockquote>
+<p>风险提示：本文用于个人研究和执行记录，不构成投资建议。主动基金穿透仍是2026年二季报口径，盘中基金表现均为区间估算；最终净值、费用、跟踪误差和实际成交以基金公司确认结果为准。</p>
+</blockquote>
+          <div class="kpis">
+            <div class="kpi"><small>正式账户基准</small><b>¥199,211.36</b><span>普通基金至8月12日，QDII至8月11日</span></div>
+            <div class="kpi good"><small>账户盘中估算</small><b class="pos">+0.15%~+0.55%</b><span>约+300至+1,100元，非正式净值</span></div>
+            <div class="kpi bad"><small>沪深市场宽度</small><b class="neg">1330 / 3791</b><span>上涨家数 / 下跌家数，约14:38</span></div>
+            <div class="kpi warn"><small>今日新增交易</small><b>0</b><span>无估值与4%双重合格买点</span></div>
+          </div>
+        </div>
+        <section class="section" id="summary"><p class="kicker">SECTION 01</p><h2>1. 今日持仓动作先行</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th>基金</th>
+<th style="text-align: right;">14:34附近可观察状态</th>
+<th>今日动作</th>
+<th>改变动作的可审计条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中欧医疗健康A（<code>003095</code>）</td>
+<td style="text-align: right;">医疗ETF <code>+2.29%</code>；基金估算 <code>+1.3%至+2.2%</code></td>
+<td><strong>继续持有，不加仓、不减仓</strong></td>
+<td>加仓需估值仍偏低、盈利预期未恶化、组合医疗权重有空间且有真实4%锚点；减仓需高估、论点失效或再平衡触发</td>
+</tr>
+<tr>
+<td>汇添富消费行业（<code>000083</code>）</td>
+<td style="text-align: right;">消费ETF <code>+0.15%</code>；基金估算 <code>-0.2%至+0.6%</code></td>
+<td><strong>继续持有，不补仓</strong></td>
+<td>收入、库存、批价、回款至少两项连续改善，且停止消费工具重复后再评估</td>
+</tr>
+<tr>
+<td>天弘食品饮料A（<code>001631</code>）</td>
+<td style="text-align: right;">消费 <code>+0.15%</code>、白酒 <code>+0.67%</code></td>
+<td><strong>持有，停止重复新增</strong></td>
+<td>与 <code>000083</code>、<code>012414</code> 比较费率、跟踪和重叠后只保留一个新增渠道</td>
+</tr>
+<tr>
+<td>招商中证白酒C（<code>012414</code>）</td>
+<td style="text-align: right;">白酒ETF <code>+0.67%</code></td>
+<td><strong>持有，不追涨</strong></td>
+<td>需求、库存、批价和经营现金流共同确认，且组合层允许</td>
+</tr>
+<tr>
+<td>天弘中证光伏产业A（<code>011102</code>）</td>
+<td style="text-align: right;">光伏ETF <code>-1.13%</code></td>
+<td><strong>持有，不补仓</strong></td>
+<td>价格企稳、库存下降、产能退出、减值收敛、自由现金流改善至少三项成立</td>
+</tr>
+<tr>
+<td>南方中证新能源ETF联接A（<code>012831</code>）</td>
+<td style="text-align: right;">新能源ETF <code>-0.38%</code></td>
+<td><strong>持有，不新增</strong></td>
+<td>中周期利润和供给纪律确认；估值与相关风险预算同时通过</td>
+</tr>
+<tr>
+<td>信澳核心科技A（<code>007484</code>）</td>
+<td style="text-align: right;">二季末重仓分化；估算 <code>-0.5%至+0.6%</code></td>
+<td><strong>小仓持有，继续观察，不新增</strong></td>
+<td>连续季度费后超额与风格稳定性修复才保留为新增工具；否则按计划替换</td>
+</tr>
+<tr>
+<td>天弘永利债券B（<code>420102</code>）</td>
+<td style="text-align: right;">国债ETF <code>+0.04%</code>、转债ETF <code>-0.87%</code></td>
+<td><strong>继续持有，不当现金</strong></td>
+<td>若家庭用途需要低波动，或费后收益持续不匹配，则换更纯的防守工具</td>
+</tr>
+<tr>
+<td>汇添富鑫享添利六个月持有A（<code>012951</code>）</td>
+<td style="text-align: right;">短融ETF <code>0.00%</code>，权益部分承压</td>
+<td><strong>继续持有</strong></td>
+<td>满足持有期后复核信用、久期、权益暴露和费后收益</td>
+</tr>
+<tr>
+<td>华安纳指100联接A（<code>040046</code>，两渠道）</td>
+<td style="text-align: right;">8月12日纳指100 <code>+0.74%</code>，人民币与净值时差未核验</td>
+<td><strong>持有，不重复新增</strong></td>
+<td>海外核心只保留一个纳指渠道；新增前核对限购、费率、跟踪误差与汇率</td>
+</tr>
+<tr>
+<td>摩根标普500指数A（<code>017641</code>）</td>
+<td style="text-align: right;">8月12日标普500 <code>+0.26%</code></td>
+<td><strong>继续持有</strong></td>
+<td>作为海外宽基核心候选；估值和家庭海外风险预算通过后才新增</td>
+</tr>
+<tr>
+<td>广发纳指100联接A（<code>270042</code>）</td>
+<td style="text-align: right;">8月12日纳指100 <code>+0.74%</code></td>
+<td><strong>持有，停止重复新增</strong></td>
+<td>与 <code>040046</code> 二选一，不因金额小忽略重复</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>14:30盘中最终动作：13项持仓全部继续持有；今日买入、卖出和减仓均为零。</strong> 医疗上涨没有把合理估值推到高估区，光伏和新能源下跌也没有产生可审计的4%触发。没有真实的“上次买入确认净值”，因此不能声称任何基金已经触发4%法。</p>
+</section><section class="section" id="market"><p class="kicker">SECTION 02</p><h2>2. 交易日门控与市场结构</h2>
+<h3>2.1 门控结论</h3>
+<ul>
+<li>新浪沪市交易日历明确包含 <code>2026-08-13</code>；上交所2026年休市安排中，8月13日不属于节假日休市。</li>
+<li>上交所官方行情返回 <code>date=20260813,time=143720</code>，深交所官方行情返回 <code>marketTime=2026-08-13 14:37:29</code>；均属于当天连续竞价时段。</li>
+<li>因此今天是可执行的沪深交易日，且实时行情没有停更；报告继续生成。</li>
+</ul>
+<h3>2.2 指数、宽度与成交额</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th>指数</th>
+<th style="text-align: right;">14:37—14:38点位</th>
+<th style="text-align: right;">涨跌</th>
+<th>盘中含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上证指数</td>
+<td style="text-align: right;">3939.63</td>
+<td style="text-align: right;">-0.18%</td>
+<td>大盘价值偏弱</td>
+</tr>
+<tr>
+<td>沪深300</td>
+<td style="text-align: right;">4673.62</td>
+<td style="text-align: right;">-0.37%</td>
+<td>核心宽基回落</td>
+</tr>
+<tr>
+<td>深证成指</td>
+<td style="text-align: right;">14365.68</td>
+<td style="text-align: right;">-0.34%</td>
+<td>深市整体偏弱</td>
+</tr>
+<tr>
+<td>创业板指</td>
+<td style="text-align: right;">3611.74</td>
+<td style="text-align: right;">+0.27%</td>
+<td>医疗与部分成长支撑</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td style="text-align: right;">1738.04</td>
+<td style="text-align: right;">+0.06%</td>
+<td>高估科技内部显著分化</td>
+</tr>
+<tr>
+<td>中证500</td>
+<td style="text-align: right;">8030.29</td>
+<td style="text-align: right;">-0.19%</td>
+<td>中盘承压</td>
+</tr>
+</tbody>
+</table></div>
+<p>腾讯沪深可比样本 <code>5208家</code>：上涨 <code>1330家</code>、下跌 <code>3791家</code>、平盘 <code>87家</code>，下跌约为上涨的2.85倍。新浪全A含北交所等样本 <code>5542家</code>：上涨 <code>1440家</code>、下跌 <code>4010家</code>、平盘 <code>92家</code>，中位数约 <code>-0.974%</code>。两源样本定义不同但方向一致；创业板和科创50相对抗跌又说明结构并非全面风险撤退。</p>
+<p>成交额存在多个可复核口径：上交所与深交所14:37—14:38指数行情累计额字段合计约 <code>2.257万亿元</code>；新浪全A逐股较早快照求和约 <code>2.271万亿元</code>。两者覆盖证券范围、字段定义和时点不同，本文并列展示，不挑选更支持某种叙事的数字；都属于盘中累计值，不能与完整收盘额直接比较。</p>
+<h3>2.3 行业轮动</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th>相对强势方向</th>
+<th style="text-align: right;">涨跌</th>
+<th>相对弱势方向</th>
+<th style="text-align: right;">涨跌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>医疗</td>
+<td style="text-align: right;">+2.29%</td>
+<td>有色金属</td>
+<td style="text-align: right;">-3.35%</td>
+</tr>
+<tr>
+<td>生物科技</td>
+<td style="text-align: right;">+1.94%</td>
+<td>房地产</td>
+<td style="text-align: right;">-2.12%</td>
+</tr>
+<tr>
+<td>创新药</td>
+<td style="text-align: right;">+1.63%</td>
+<td>半导体设备</td>
+<td style="text-align: right;">-1.45%</td>
+</tr>
+<tr>
+<td>通信</td>
+<td style="text-align: right;">+1.05%</td>
+<td>光伏</td>
+<td style="text-align: right;">-1.13%</td>
+</tr>
+<tr>
+<td>人工智能</td>
+<td style="text-align: right;">+0.71%</td>
+<td>软件</td>
+<td style="text-align: right;">-0.82%</td>
+</tr>
+<tr>
+<td>白酒</td>
+<td style="text-align: right;">+0.67%</td>
+<td>煤炭 / 半导体</td>
+<td style="text-align: right;">-0.64% / -0.55%</td>
+</tr>
+</tbody>
+</table></div>
+<p>今天的核心不是“成长普涨”，而是<strong>医疗、创新药、通信与服务器相对强，制造周期和多数个股下跌</strong>。行业排名只描述资金和价格，不等同于行业自由现金流在一天内改变。</p>
+<h3>2.4 港股和上一交易日美股</h3>
+<ul>
+<li>港股约14:33抓取、字段14:18的延时快照：恒生指数 <code>25407.48</code>、<code>-0.13%</code>；恒生科技 <code>4809.87</code>、<code>+0.70%</code>。</li>
+<li>阿里巴巴-W（<code>09988</code>）<code>122.50港元</code>、<code>-0.08%</code>；中芯国际（<code>00981</code>）<code>68.70港元</code>、<code>+1.93%</code>。这些价格不冒充14:30实时成交。</li>
+<li>8月12日美股收盘：标普500 <code>+0.26%</code>、纳斯达克100 <code>+0.74%</code>、纳斯达克综合 <code>+0.54%</code>、道琼斯 <code>-0.04%</code>。</li>
+</ul>
+<p>QDII的下一次正式净值还会受人民币汇率、产品费用和净值时差影响，不能把美股指数涨幅直接当成基金日增长率。</p>
+</section><section class="section" id="principle"><p class="kicker">SECTION 03</p><h2>3. 第一性原理：今天究竟改变了什么</h2>
+<pre><code class="language-text">资产价值 = 未来可分配自由现金流 × 实现概率的折现值
+
+长期股东回报
+= 盈利增长 + 可持续分红 +/- 估值变化
+- 资本开支 - 竞争损耗 - 费用 - 永久性损失
+</code></pre>
+<ol>
+<li><strong>资产层：</strong> 医疗价格反弹，但研发成功率、支付政策和商业化现金流没有在盘中同步更新；光伏下跌，但产能退出、库存和资本开支也没有自动改善。</li>
+<li><strong>估值层：</strong> 医疗上涨降低安全边际，光伏下跌略提高价格赔率；两者都不足以单独决定交易。周期行业不能在盈利高点机械看低PE，科技也不能只用远期增长忽略资本开支。</li>
+<li><strong>工具层：</strong> 指数联接要看跟踪误差与费率，主动基金要看费后超额和风格稳定。单日净值方向不能证明基金工具质量。</li>
+<li><strong>组合层：</strong> 医疗约占账户23.90%，停止新增是集中度控制，不是因为“占比高所以资产一定该卖”；同理，光伏和新能源合计约8.06%，下跌也不自动获得新增预算。</li>
+<li><strong>执行层：</strong> 估值法决定能否买，4%法只决定通过质量、估值和组合门后的分批节奏。缺少真实成交锚点时，4%法没有可执行输入。</li>
+</ol>
+</section><section class="section" id="portfolio"><p class="kicker">SECTION 04</p><h2>4. 正式净值基准与盘中估算</h2>
+<h3>4.1 最新正式账户基准</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th>持仓</th>
+<th>最新正式净值日期</th>
+<th style="text-align: right;">校准市值</th>
+<th style="text-align: right;">权重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>天弘永利债券B（<code>420102</code>）</td>
+<td>8月12日</td>
+<td style="text-align: right;">88,943.21元</td>
+<td style="text-align: right;">44.65%</td>
+</tr>
+<tr>
+<td>中欧医疗健康A（<code>003095</code>）</td>
+<td>8月12日</td>
+<td style="text-align: right;">47,603.57元</td>
+<td style="text-align: right;">23.90%</td>
+</tr>
+<tr>
+<td>汇添富鑫享添利六个月持有A（<code>012951</code>）</td>
+<td>8月12日</td>
+<td style="text-align: right;">20,067.60元</td>
+<td style="text-align: right;">10.07%</td>
+</tr>
+<tr>
+<td>汇添富消费行业（<code>000083</code>）</td>
+<td>8月12日</td>
+<td style="text-align: right;">13,652.99元</td>
+<td style="text-align: right;">6.85%</td>
+</tr>
+<tr>
+<td>天弘中证光伏产业A（<code>011102</code>）</td>
+<td>8月12日</td>
+<td style="text-align: right;">9,676.47元</td>
+<td style="text-align: right;">4.86%</td>
+</tr>
+<tr>
+<td>南方中证新能源ETF联接A（<code>012831</code>）</td>
+<td>8月12日</td>
+<td style="text-align: right;">6,371.33元</td>
+<td style="text-align: right;">3.20%</td>
+</tr>
+<tr>
+<td>信澳核心科技A（<code>007484</code>）</td>
+<td>8月12日</td>
+<td style="text-align: right;">5,546.21元</td>
+<td style="text-align: right;">2.78%</td>
+</tr>
+<tr>
+<td>三只QDII合计</td>
+<td>8月11日</td>
+<td style="text-align: right;">5,147.62元</td>
+<td style="text-align: right;">2.58%</td>
+</tr>
+<tr>
+<td>食品饮料A与白酒C</td>
+<td>8月12日</td>
+<td style="text-align: right;">2,202.36元</td>
+<td style="text-align: right;">1.11%</td>
+</tr>
+</tbody>
+</table></div>
+<p>合计约 <code>199,211.36元</code>。两只偏债产品合计约54.72%，但二季末仍含股票、转债、信用和久期风险，不能把它们全部当现金。</p>
+<h3>4.2 每一项持仓的当天估算表现</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align: right;">最新正式净值</th>
+<th style="text-align: right;">14:34附近盘中估算</th>
+<th>估算依据与限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>040046</code></td>
+<td style="text-align: right;">8.2370（8月11日）</td>
+<td style="text-align: right;">+0.2%至+0.7%</td>
+<td>8月12日纳指100 +0.74%；汇率和跟踪未核验</td>
+</tr>
+<tr>
+<td><code>017641</code></td>
+<td style="text-align: right;">1.7166（8月11日）</td>
+<td style="text-align: right;">0.0%至+0.5%</td>
+<td>8月12日标普500 +0.26%；汇率未核验</td>
+</tr>
+<tr>
+<td><code>270042</code></td>
+<td style="text-align: right;">8.1894（8月11日）</td>
+<td style="text-align: right;">+0.2%至+0.7%</td>
+<td>同属纳指100，存在时差与费用</td>
+</tr>
+<tr>
+<td><code>012414</code></td>
+<td style="text-align: right;">0.5780（8月12日）</td>
+<td style="text-align: right;">+0.5%至+0.8%</td>
+<td>白酒ETF +0.67%</td>
+</tr>
+<tr>
+<td><code>012951</code></td>
+<td style="text-align: right;">1.1726（8月12日）</td>
+<td style="text-align: right;">-0.10%至+0.05%</td>
+<td>短融持平，权益与转债偏弱；持仓披露滞后</td>
+</tr>
+<tr>
+<td><code>001631</code></td>
+<td style="text-align: right;">1.9267（8月12日）</td>
+<td style="text-align: right;">+0.1%至+0.7%</td>
+<td>消费 +0.15%、白酒 +0.67%</td>
+</tr>
+<tr>
+<td><code>012831</code></td>
+<td style="text-align: right;">0.6221（8月12日）</td>
+<td style="text-align: right;">-0.5%至-0.3%</td>
+<td>新能源ETF -0.38%</td>
+</tr>
+<tr>
+<td><code>011102</code></td>
+<td style="text-align: right;">0.7557（8月12日）</td>
+<td style="text-align: right;">-1.2%至-1.0%</td>
+<td>光伏ETF -1.13%</td>
+</tr>
+<tr>
+<td><code>000083</code></td>
+<td style="text-align: right;">4.6260（8月12日）</td>
+<td style="text-align: right;">-0.3%至+0.5%</td>
+<td>二季末重仓股涨跌互现，消费ETF +0.15%</td>
+</tr>
+<tr>
+<td><code>007484</code></td>
+<td style="text-align: right;">1.3438（8月12日）</td>
+<td style="text-align: right;">-0.5%至+0.6%</td>
+<td>半导体/软件偏弱，浪潮信息 +5.99%；主动调仓未知</td>
+</tr>
+<tr>
+<td><code>420102</code></td>
+<td style="text-align: right;">1.2518（8月12日）</td>
+<td style="text-align: right;">-0.10%至+0.05%</td>
+<td>国债 +0.04%、转债 -0.87%，另含权益</td>
+</tr>
+<tr>
+<td><code>003095</code></td>
+<td style="text-align: right;">2.1200（8月12日）</td>
+<td style="text-align: right;">+1.3%至+2.2%</td>
+<td>医疗 +2.29%、创新药 +1.63%，多只二季末重仓股上涨</td>
+</tr>
+</tbody>
+</table></div>
+<p>综合估算账户约 <code>+0.15%至+0.55%</code>，约 <code>+300至+1,100元</code>。区间较宽，主要来自 <code>003095</code> 主动持仓调仓未知、偏债产品底层混合以及QDII净值时差；这不是正式净值预测承诺。</p>
+</section><section class="section" id="valuation"><p class="kicker">SECTION 05</p><h2>5. 估值层：指标、适用性与置信度</h2>
+<p>下表以中证指数公司8月11日PE1/股息率2为正式基准，叠加8月12日和8月13日14:34—14:38价格变化做机械更新。它不是8月13日正式估值，也不是最新历史分位。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th>方向</th>
+<th style="text-align: right;">14:34—14:38机械PE / 股息率</th>
+<th>适用性与判断</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>沪深300</td>
+<td style="text-align: right;">约14.83倍 / 2.18%</td>
+<td>盈利较稳定，可用PE；历史分位与ERP未重算，偏合理至合理偏高</td>
+<td>不追，等待更好赔率</td>
+</tr>
+<tr>
+<td>中证医疗</td>
+<td style="text-align: right;">约30.27倍 / 1.19%</td>
+<td>需结合研发成功率、支付政策和现金流；不能只看PE</td>
+<td>已有仓持有，不补</td>
+</tr>
+<tr>
+<td>中证白酒</td>
+<td style="text-align: right;">约20.17倍 / 4.46%</td>
+<td>PE与股息率有研究价值，但需求和库存仍是质量门</td>
+<td>持有，不追</td>
+</tr>
+<tr>
+<td>主要消费</td>
+<td style="text-align: right;">约19.58倍 / 4.11%</td>
+<td>盈利稳定度较高；渠道库存和现金回款决定低估是否真实</td>
+<td>持有，不新增重复工具</td>
+</tr>
+<tr>
+<td>红利低波</td>
+<td style="text-align: right;">约7.76倍 / 4.92%</td>
+<td>绝对值低但行业结构天然低估值；最近可复核历史PE分位并不低</td>
+<td>继续观察</td>
+</tr>
+<tr>
+<td>光伏产业</td>
+<td style="text-align: right;">约26.87倍 / 0.93%</td>
+<td>强周期，PE可能被低谷利润抬高或高峰利润压低；应看PB、中周期现金流与产能</td>
+<td>不因下跌补仓</td>
+</tr>
+<tr>
+<td>中证新能源</td>
+<td style="text-align: right;">约26.19倍 / 1.04%</td>
+<td>需看供需、资本开支和中周期利润</td>
+<td>持有，不新增</td>
+</tr>
+<tr>
+<td>人工智能主题</td>
+<td style="text-align: right;">约56.99倍 / 0.56%</td>
+<td>高久期，增长需覆盖算力投入、折旧与竞争</td>
+<td>不新增主题仓</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td style="text-align: right;">约112.57倍 / 0.16%</td>
+<td>周期与高资本开支行业，单一PE高度不稳</td>
+<td>不追；等待盈利兑现</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td style="text-align: right;">官方基准机械约98.71倍</td>
+<td>腾讯行情口径约190.51倍，口径冲突极大</td>
+<td>降低置信度，不据单一数值交易</td>
+</tr>
+</tbody>
+</table></div>
+<p>PB、完整历史分位和股权风险溢价没有在盘中获得同口径最新文件，本报告不填造数字。风险溢价还需要同期限无风险利率、指数盈利口径和时间对齐；缺任一项都不能把“PE倒数减国债收益率”包装成精确结论。</p>
+</section><section class="section" id="holdings"><p class="kicker">SECTION 06</p><h2>6. 持仓资产与工具逐项判断</h2>
+<h3>6.1 医疗、消费与白酒</h3>
+<p>医疗和创新药逆势上涨，说明市场愿意提高对部分研发与服务资产的定价；它没有证明所有管线成功率或经营现金流同步改善。<code>003095</code> 二季末权益约92.30%、前十大占75.10%，基金自身集中度与账户23.90%权重叠加。<strong>资产层继续持有；组合层停止新增；没有卖出触发。</strong></p>
+<p>消费与白酒今天温和上涨。约20倍机械PE和4%以上股息率提高研究价值，但需求、库存、批价和回款仍未形成完整闭环。三只消费产品合计约7.96%，名称不同但底层风险重叠。<strong>资产继续持有，工具层停止三路同时新增；择机只保留一个新增渠道。</strong></p>
+<h3>6.2 光伏与新能源</h3>
+<p>终端装机增长不等于制造企业股东回报：供给扩张、价格战、折旧、减值、库存和应收可能吃掉收入增长。今天光伏 <code>-1.13%</code>、新能源 <code>-0.38%</code> 只让价格略便宜，没有新增产能退出和自由现金流证据。</p>
+<p><strong>现有仓继续持有，不补仓。</strong> 如果未来出现价格企稳、库存下降、低效产能退出、减值收敛和自由现金流转正中的至少三项，再重做估值，而不是把单日下跌当周期底。</p>
+<h3>6.3 偏债产品与QDII</h3>
+<p><code>420102</code>、<code>012951</code> 继续承担防守角色，但国债上涨与转债下跌说明其内部资产并不同步。只有货币基金、存款或短久期高流动性工具才更接近现金管理，偏债基金不能被组合标签掩盖底层风险。</p>
+<p><code>040046</code> 两渠道与 <code>270042</code> 都跟踪纳指100，产品重叠明确；<code>017641</code> 的标普500覆盖更广。当前海外合计只有约2.58%，不需要盘中卖出，但今后新增只选一个纳指渠道，并把跟踪误差、费率、限购和汇率纳入工具门。</p>
+<h3>6.4 信澳核心科技A</h3>
+<p>今天其二季末持仓分化：浪潮信息 <code>+5.99%</code>、神州数码 <code>+2.08%</code>，但多数半导体与软件持仓下跌。二季度A份额涨约4.76%，同期业绩比较基准约涨29.07%，单日服务器上涨不能修复费后超额记录。</p>
+<p><strong>小仓继续持有、不新增。</strong> 工具判断以连续季度费后超额、换手和风格稳定为准，不以“回本”作为是否替换的条件。</p>
+</section><section class="section" id="ai"><p class="kicker">SECTION 07</p><h2>7. AI产业链：产业增长不等于证券便宜</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th>环节</th>
+<th>14:34—14:36代表性价格事实</th>
+<th>现金流检查</th>
+<th>证券估值结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算力芯片 / GPU</td>
+<td>寒武纪 +0.88%、PE约210.3倍；海光接近平盘、PE约245倍</td>
+<td>订单、毛利、研发效率、供应约束</td>
+<td>产业价值高，证券价格要求极高兑现</td>
+</tr>
+<tr>
+<td>半导体设备</td>
+<td>北方华创 -2.22%、PE约96.7倍；中微 -1.73%、PE约131.4倍</td>
+<td>国产替代、验收周期、资本开支</td>
+<td>不因国产替代叙事忽略周期和估值</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>兆易创新 -0.88%、PE约100.0倍；佰维存储 -2.77%、PE约28.4倍</td>
+<td>ASP、库存、扩产、周期中枢利润</td>
+<td>低PE可能来自盈利周期高点，不能横比</td>
+</tr>
+<tr>
+<td>光模块</td>
+<td>中际 +0.98%、新易盛 +1.59%、天孚 +8.11%</td>
+<td>客户集中、订单持续性、应收和资本开支</td>
+<td>约56至130倍PE，不追单日强势</td>
+</tr>
+<tr>
+<td>服务器</td>
+<td>浪潮信息 +6.00%、PE约45.7倍；工业富联 +0.02%、PE约27.8倍</td>
+<td>收入质量、毛利、营运资本与自由现金流</td>
+<td>需求可见度较强，但价格分化巨大</td>
+</tr>
+<tr>
+<td>云计算</td>
+<td>云计算ETF +0.69%</td>
+<td>云收入、利用率、折旧和资本回报</td>
+<td>产业增长成立仍需利润兑现</td>
+</tr>
+<tr>
+<td>软件</td>
+<td>软件ETF -0.96%；金山办公 -1.88%、PE约32.7倍</td>
+<td>续费、席位、推理成本与边际利润</td>
+<td>比硬件更轻资本，但商业化并非自动发生</td>
+</tr>
+<tr>
+<td>推理框架与应用</td>
+<td>科大讯飞 -1.15%、PE约117.2倍</td>
+<td>单次推理成本、付费率、留存、平台依赖</td>
+<td>缺少纯粹可投资映射，不能把用户增长当股东现金流</td>
+</tr>
+</tbody>
+</table></div>
+<p>AMD 2026 Q2披露总收入同比增长50%、数据中心收入同比增长107%，证明算力需求强；中芯2026 Q1同时披露高利用率、15.63亿美元资本开支和10.88亿美元折旧摊销，说明产业扩张可以先吞噬现金。两条证据应同时保留：<strong>产业需求是真实的，但高增长、竞争优势、资本回报和买入估值必须四项同时成立。</strong></p>
+<p>账户已经通过 <code>007484</code> 和纳指QDII持有AI风险，不新增AI、半导体或光模块主题仓。</p>
+</section><section class="section" id="dividend"><p class="kicker">SECTION 08</p><h2>8. 红利、红利低波与A股宽基</h2>
+<p>红利低波ETF盘中持平，机械PE约7.76倍、股息率约4.92%。绝对股息率有吸引力，但低估值部分来自银行、煤炭等行业结构；此前同口径历史PE分位约在65%附近，今天持平不会把它变成历史低估。<strong>严格估值法继续观察；如果家庭完全没有防守权益，只能在独立战略配置规则下规划1%至2%首仓，不能称作4%触发。</strong></p>
+<p>沪深300机械PE约14.83倍，账户缺少A股宽基核心仍是长期结构缺口。解决顺序是先确定家庭权益目标和风险预算，再在合理偏低区用新资金建立；今天的0.37%回落不足以创造安全边际。</p>
+<p>普通红利与红利低波并非同一工具：前者通常更集中高股息行业，后者叠加波动率筛选。费率、指数规则、行业上限和跟踪误差尚未完成同口径复核，今天不选产品。</p>
+</section><section class="section" id="assets"><p class="kicker">SECTION 09</p><h2>9. 阿里巴巴、中芯国际与黄金</h2>
+<h3>阿里巴巴-W（<code>09988</code>）</h3>
+<p>延时行情字段14:18报 <code>122.50港元</code>、<code>-0.08%</code>，行情口径PE约19.94倍、PB约1.95倍。最近确认的正式业绩仍是FY2026年度结果；云与AI提供增长选择权，即时零售、竞争投入和资本开支消耗现金。</p>
+<p><strong>动作：继续观察，不建仓。</strong> 触发研究升级的条件是云利润、集团正常化自由现金流和资本回报同时改善，并以可解释的自由现金流收益率提供安全边际；单日微跌不是买点。</p>
+<h3>中芯国际（<code>00981</code>）</h3>
+<p>延时行情字段14:18报 <code>68.70港元</code>、<code>+1.93%</code>，行情口径PE约109.83倍、PB约3.45倍。国产替代与产能战略价值真实，但高折旧、高资本开支、利用率和技术迭代决定股东回报；未找到比一季报更晚且已完成核验的正式结果，因此不把市场传闻当财报。</p>
+<p><strong>动作：不追涨、不建仓。</strong> 至少等待毛利率、自由现金流和估值三项中的两项显著改善。</p>
+<h3>黄金</h3>
+<p>黄金ETF <code>-0.88%</code>；上金所官方接口过滤更新时间之后的占位点后，Au99.99在14:37最后有效点约 <code>948.30元/克</code>。世界黄金协会Q2数据显示总需求（含场外）同比大致持平、央行和机构需求显著增长，但ETF持仓下降；多空证据同时存在。</p>
+<p>黄金没有经营利润，不能使用PE或PB。<strong>不因今天下跌追买。</strong> 家庭完全无黄金时可把2%至4%保险仓作为独立长期规划；已有金饰、金条或其他黄金必须合并计算。</p>
+</section><section class="section" id="dca"><p class="kicker">SECTION 10</p><h2>10. 4%定投法：今天没有可审计触发</h2>
+<pre><code class="language-text">质量门 -&gt; 指标门 -&gt; 估值门 -&gt; 基本面门 -&gt; 组合门
+-&gt; 上一次实际买入确认净值 P
+-&gt; 下一份仅在最终确认净值 &lt;= 0.96P 时执行
+</code></pre>
+<ul>
+<li>光伏盘中约跌1.13%、新能源约跌0.38%，远不到4%，且基本面门没有新增证据。</li>
+<li>医疗上涨，不能追涨；消费与白酒小涨，也不触发下跌分批。</li>
+<li>QDII的美股底层上涨，且净值时差与汇率尚未闭环。</li>
+<li>平均持仓成本、上一日净值、盘中估算净值都不是有效锚点。</li>
+<li>没有每只基金最后一次实际买入确认净值和剩余预算，因此任何“触发4%”说法都不可审计。</li>
+</ul>
+<p><strong>结论：今日没有4%买入，不补录、不倒推、不用平均成本替代真实成交。</strong></p>
+</section><section class="section" id="gaps"><p class="kicker">SECTION 11</p><h2>11. 当前最大的遗漏</h2>
+<ol>
+<li><strong>交易账本仍缺失。</strong> 最后一次实际买入确认净值、金额、分红方式、剩余战术预算都不完整，4%规则无法执行。</li>
+<li><strong>家庭资产负债表未知。</strong> 现金、房产、保险、负债、实物黄金和未来1至3年支出会改变风险上限。</li>
+<li><strong>主动基金持仓滞后。</strong> 当前穿透是6月30日，盘中估算可能被调仓显著扭曲。</li>
+<li><strong>工具指标未闭环。</strong> 最新费率、跟踪误差、限购、换手和费后超额没有形成统一审计表。</li>
+<li><strong>估值历史分位与ERP未重算。</strong> 盘中只有机械PE与股息率，不能伪装成完整估值模型。</li>
+<li><strong>持仓表字段冲突。</strong> 三只QDII净值日期、<code>007484</code>与<code>420102</code>的成本收益关系仍需交易/分红流水解释。</li>
+</ol>
+<p><strong>最大的遗漏不是少买了哪个热门行业，而是没有一套可复现的交易账本和家庭风险预算。</strong></p>
+</section><section class="section" id="plan"><p class="kicker">SECTION 12</p><h2>12. 长期调整方向</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的数据表格"><table>
+<thead>
+<tr>
+<th style="text-align: right;">优先级</th>
+<th>问题</th>
+<th>长期动作</th>
+<th>今日是否交易</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>交易锚点缺失</td>
+<td>补齐成交、确认净值、分红和预算</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>偏债并非现金</td>
+<td>穿透信用、久期、转债和权益；按用途选择工具</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>医疗集中</td>
+<td>资产继续持有，停止新增；高估或再平衡时调整</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>消费与纳指重复</td>
+<td>分别只保留一个新增渠道</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td><code>007484</code> 工具质量</td>
+<td>用连续季度费后超额决定保留或替换</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td>A股宽基缺失</td>
+<td>估值合理偏低且家庭预算通过后，用新资金建立</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td>黄金与红利角色未定</td>
+<td>先按家庭资产定义保险与防守权益目标</td>
+<td>否</td>
+</tr>
+</tbody>
+</table></div>
+<p>调整必须由产品失效、估值、相关风险预算或再平衡触发；“回本”不是卖出前提，盘中行业轮动也不是换仓理由。</p>
+</section><section class="section" id="audit"><p class="kicker">SECTION 13</p><h2>13. 对抗式审查</h2>
+<h3>医疗逆势上涨，为什么不加仓</h3>
+<p>反方证据是医疗、创新药和多只CXO重仓股同步上涨，可能意味着盈利预期在提前修复。当前决策可能错过一段趋势。但账户医疗已约23.90%，基金自身前十大集中度75.10%，且没有真实4%锚点。<strong>若后续盈利预测、现金流和估值分位共同改善，应允许用再平衡规则重开讨论；今天不追。</strong></p>
+<h3>光伏跌1.13%，是否越跌越便宜</h3>
+<p>反方观点是价格下跌而终端需求仍增长，赔率可能改善。问题是股东回报取决于售价、产能退出、折旧、减值和营运资本。若产能出清速度快于预期，本报告会低估反转；在现金流证据出现前，不把低价当价值。</p>
+<h3>浪潮信息涨6%、光模块强，AI是否已经形成主线</h3>
+<p>服务器和光模块订单可能比软件收入更早兑现，停止新增可能造成机会成本。但半导体设备、存储、软件和应用多数下跌，科技内部不是普遍上修；代表公司估值从约28倍到245倍不等。产业增长成立与证券便宜是两个命题。</p>
+<h3>全A四千家下跌，是否应该先减仓</h3>
+<p>广度偏弱证明今天风险偏好下降，却不证明现有资产未来现金流永久恶化。组合54%以上为偏债，且没有单一资产高估或论点失效证据。因一天广度减仓会把波动当永久损失。</p>
+<h3>黄金下跌，为什么不立刻建立保险仓</h3>
+<p>Q2央行需求强是多头证据，ETF持仓下降与高价压制需求又是反方证据。保险仓应由家庭资产缺口决定，不由单日跌幅决定；没有家庭黄金总暴露，无法确认缺口。</p>
+</section><section class="section" id="sources"><p class="kicker">SECTION 14</p><h2>14. 数据来源、口径与未确认风险</h2>
+<ul>
+<li>交易日：上交所2026年休市安排；新浪沪市交易日历接口。两者与今日盘中行情时间戳交叉核验。</li>
+<li>A股官方宽基：上交所、深交所14:37—14:38；行业ETF和个股为腾讯14:34；港股为约14:33抓取、字段14:18的延时行情；美股为8月12日收盘。</li>
+<li>市场宽度：腾讯沪深与新浪全A两种样本并列；成交额以交易所指数行情字段为主，并与新浪逐股口径交叉验证。</li>
+<li>正式基金净值：本仓库AKShare <code>fund_open_fund_info_em</code>，普通基金到8月12日、QDII到8月11日。</li>
+<li>黄金：上海黄金交易所行情接口14:37；世界黄金协会2026年二季度黄金需求报告。</li>
+<li>指数估值：中证指数公司8月11日PE1与股息率2，叠加两日价格变化机械估算；非正式8月13日估值。</li>
+<li>基金穿透：2026年二季报；详见 <a href="./dca_analysis_20260813_source_notes.md"><code>dca_analysis_20260813_source_notes.md</code></a>。</li>
+<li>阿里、中芯、AMD及其他AI链基本面：最近可核验公司公告和投资者关系资料，完整链接在source notes；未确认的新消息不进入现金流结论。</li>
+</ul>
+<p>未确认风险：A股、港股和黄金仍在交易；主动基金可能已调仓；QDII汇率和正式净值未出；PB、最新历史分位、风险溢价、基金最新跟踪误差与全部费率尚未同口径确认；科创50PE口径冲突约一倍。以上不确定性均降低交易置信度，而不是用更有利的数字填补。</p></section>
+      </div>
+      <footer>14:30盘中决策版 · 数据仍在变化 · 最终净值以基金公司披露为准 · 不构成投资建议</footer>
+    </main>
+  </div>
+  <script>
+    document.getElementById('print-report').addEventListener('click', () => window.print());
+    const links = [...document.querySelectorAll('.nav-list a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + visible.target.id));
+    }, {rootMargin:'-15% 0px -70% 0px', threshold:[0, .2, .5]});
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
